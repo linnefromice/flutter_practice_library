@@ -11,22 +11,26 @@ class MainScreen extends StatelessWidget {
       body: Center(
         child: ListView(
           children: <Widget>[
-            ListTile(
-              leading: FlutterLogo(),
-              title: Text('shared_preferences'),
-              subtitle: Text('https://pub.dev/packages/shared_preferences'),
-              // trailing: use UrlLauncher,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SharedPreferencesScreen()),
-                );
-              },
+            Card(
+              child: ListTile(
+                leading: FlutterLogo(),
+                title: Text('shared_preferences'),
+                subtitle: Text('https://pub.dev/packages/shared_preferences'),
+                // trailing: use UrlLauncher,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SharedPreferencesScreen()),
+                  );
+                },
+              ),
             ),
-            ListTile(
-              leading: FlutterLogo(),
-              title: Text('sqflite'),
-              subtitle: Text('https://pub.dev/packages/sqflite'),
+            Card(
+              child: ListTile(
+                leading: FlutterLogo(),
+                title: Text('sqflite'),
+                subtitle: Text('https://pub.dev/packages/sqflite'),
+              ),
             ),
           ]
         )
