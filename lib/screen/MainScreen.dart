@@ -16,6 +16,12 @@ class MainScreen extends StatelessWidget {
               title: Text('shared_preferences'),
               subtitle: Text('https://pub.dev/packages/shared_preferences'),
               // trailing: use UrlLauncher,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SharedPreferencesScreen()),
+                );
+              },
             ),
             ListTile(
               leading: FlutterLogo(),
