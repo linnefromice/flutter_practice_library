@@ -16,6 +16,11 @@ class SharedPreferencesScreen extends StatelessWidget {
     print('saved $value');
   }
 
+  void _reset() async {
+    SharedPreferencesWrapper.setInt(keyName, 0);
+    print('reset');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +43,14 @@ class SharedPreferencesScreen extends StatelessWidget {
                 child: Text('READ'),
                 onPressed: _read,
               ),
-            )
+            ),
+            Container(
+              padding: EdgeInsets.all(8.0),
+              child: RaisedButton(
+                child: Text('RESET'),
+                onPressed: _reset,
+              ),
+            ),
           ],
         )
       ),
