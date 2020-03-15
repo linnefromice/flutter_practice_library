@@ -12,6 +12,8 @@ https://pub.dev/packages/shared_preferences
 
 https://pub.dev/packages/sqflite
 
+https://www.techiediaries.com/flutter/dart-flutter-sqlite-database-tutorial-crud-sqflite/
+
 ## Default - Getting Started
 
 This project is a starting point for a Flutter application.
