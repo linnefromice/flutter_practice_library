@@ -6,11 +6,11 @@ A application for training library practice with Flutter.
 
 ### shared_preferences
 
-TODO
+https://pub.dev/packages/shared_preferences
 
 ### sqflite
 
-TODO
+https://pub.dev/packages/sqflite
 
 ## Default - Getting Started
 
