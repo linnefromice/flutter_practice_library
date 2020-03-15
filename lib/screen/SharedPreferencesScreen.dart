@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_practice_library/core/SharedPreferencesWrapper.dart';
 
 class SharedPreferencesScreen extends StatelessWidget {
   final keyName = 'keyOne';
 
   void _read() async {
-    final prefs = await SharedPreferences.getInstance();
-    final value = prefs.getInt(keyName) ?? 0;
+    final value = await SharedPreferencesWrapper.getValue(keyName) ?? 0;
     print('read: $value');
   }
 
-  _save() async {
-    final prefs = await SharedPreferences.getInstance();
-    var value = prefs.getInt(keyName) ?? 0;
+  void _save() async {
+    int value = await SharedPreferencesWrapper.getValue(keyName) ?? 0;
     value++;
-    prefs.setInt(keyName, value);
+    SharedPreferencesWrapper.setInt(keyName, value);
     print('saved $value');
   }
 
