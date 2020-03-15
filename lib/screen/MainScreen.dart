@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice_library/screen/SharedPreferencesScreen.dart';
+import 'package:flutter_practice_library/screen/SqfliteScreen.dart';
 
 class MainScreen extends StatelessWidget {
   @override
@@ -30,6 +31,12 @@ class MainScreen extends StatelessWidget {
                 leading: FlutterLogo(),
                 title: Text('sqflite'),
                 subtitle: Text('https://pub.dev/packages/sqflite'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SqfliteScreen()),
+                  );
+                },
               ),
             ),
           ]
