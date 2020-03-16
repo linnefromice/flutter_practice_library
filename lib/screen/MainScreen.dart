@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:flutter_practice_library/screen/SharedPreferencesScreen.dart';
 import 'package:flutter_practice_library/screen/SqfliteScreen.dart';
 
 class MainScreen extends StatelessWidget {
+  void _launchUrl(final String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,8 +24,12 @@ class MainScreen extends StatelessWidget {
               child: ListTile(
                 leading: FlutterLogo(),
                 title: Text('shared_preferences'),
-                subtitle: Text('https://pub.dev/packages/shared_preferences'),
-                // trailing: use UrlLauncher,
+                subtitle: Text('Wraps NSUserDefaults (on iOS) and SharedPreferences (on Android).'),
+                trailing: RaisedButton.icon(
+                  onPressed: () => _launchUrl('https://pub.dev/packages/shared_preferences'),
+                  icon: Icon(Icons.link),
+                  label: Text('Link'),
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -30,7 +42,12 @@ class MainScreen extends StatelessWidget {
               child: ListTile(
                 leading: FlutterLogo(),
                 title: Text('sqflite'),
-                subtitle: Text('https://pub.dev/packages/sqflite'),
+                subtitle: Text('SQLite plugin for Flutter'),
+                trailing: RaisedButton.icon(
+                  onPressed: () => _launchUrl('https://pub.dev/packages/sqflite'),
+                  icon: Icon(Icons.link),
+                  label: Text('Link'),
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
