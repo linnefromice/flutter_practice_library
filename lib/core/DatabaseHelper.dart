@@ -43,4 +43,30 @@ class DatabaseHelper {
       )
     ''');
   }
+
+  Future<int> insert(Map<String, dynamic> row) async {
+    Database db = await instance.getDatabase();
+    return await db.insert(table, row);
+  }
+
+  Future<List<Map<String, dynamic>>> queryAllRows() async {
+    Database db = await instance.getDatabase();
+    return await db.query(table);
+  }
+
+  Future<int> queryRowCount() async {
+    Database db = await instance.getDatabase();
+    return Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM $table'));
+  }
+
+  Future<int> update(Map<String, dynamic> row) async {
+    Database db = await instance.getDatabase();
+    int id = row[columnId];
+    return await db.update(table, row, where: '$columnId = ?', whereArgs: [id]);
+  }
+
+  Future<int> delete(int id) async {
+    Database db = await instance.getDatabase();
+    return await db.delete(table, where: '$columnId = ?', whereArgs: [id]);
+  }
 }
