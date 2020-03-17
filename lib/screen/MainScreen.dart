@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice_library/screen/DioScreen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter_practice_library/screen/SharedPreferencesScreen.dart';
@@ -66,6 +67,12 @@ class MainScreen extends StatelessWidget {
                   icon: Icon(Icons.link),
                   label: Text('Link'),
                 ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DioScreen()),
+                  );
+                }
               ),
             ),
           ]
