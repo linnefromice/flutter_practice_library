@@ -56,6 +56,18 @@ class MainScreen extends StatelessWidget {
                 },
               ),
             ),
+            Card(
+              child: ListTile(
+                leading: FlutterLogo(),
+                title: Text('dio'),
+                subtitle: Text('A powerful Http client for Dart'),
+                trailing: RaisedButton.icon(
+                  onPressed: () => _launchUrl('https://pub.dev/packages/dio'),
+                  icon: Icon(Icons.link),
+                  label: Text('Link'),
+                ),
+              ),
+            ),
           ]
         )
       ),
