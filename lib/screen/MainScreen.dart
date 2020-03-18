@@ -5,6 +5,24 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_practice_library/screen/SharedPreferencesScreen.dart';
 import 'package:flutter_practice_library/screen/SqfliteScreen.dart';
 
+const libraryInformationList = [
+  {
+    "name": "shared_preferences",
+    "description": "Wraps NSUserDefaults (on iOS) and SharedPreferences (on Android).",
+    "url": "https://pub.dev/packages/shared_preferences"
+  },
+  {
+    "name": "sqflite",
+    "description": "SQLite plugin for Flutter",
+    "url": "https://pub.dev/packages/sqflite"
+  },
+  {
+    "name": "dio",
+    "description": "A powerful Http client for Dart",
+    "url": "https://pub.dev/packages/dio"
+  }
+];
+
 class MainScreen extends StatelessWidget {
   void _launchUrl(final String url) async {
     if (await canLaunch(url)) {
