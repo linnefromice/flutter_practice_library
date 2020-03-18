@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice_library/bloc/SharedPreferencesBloc.dart';
 import 'package:flutter_practice_library/core/SharedPreferencesWrapper.dart';
+import 'package:provider/provider.dart';
 
 class SharedPreferencesScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Provider<SharedPreferencesBloc>(
+      create: (context) => SharedPreferencesBloc(),
+      dispose: (context, bloc) => bloc.dispose(),
+      child: _Screen(),
+    );
+  }
+}
+
+class _Screen extends StatelessWidget {
   final keyName = 'keyOne';
 
   void _read() async {
