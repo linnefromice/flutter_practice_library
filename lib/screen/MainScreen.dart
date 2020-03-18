@@ -30,6 +30,27 @@ class MainScreen extends StatelessWidget {
     }
   }
 
+  Widget _buildLibraryInformationCard(final String name, final String description, final String url, final BuildContext context, final Widget screen) {
+    return Card(
+      child: ListTile(
+        leading: FlutterLogo(),
+        title: Text(name),
+        subtitle: Text(description),
+        trailing: RaisedButton.icon(
+          onPressed: () => _launchUrl(url),
+          icon: Icon(Icons.link),
+          label: Text('Link'),
+        ),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => screen),
+          );
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,59 +60,26 @@ class MainScreen extends StatelessWidget {
       body: Center(
         child: ListView(
           children: <Widget>[
-            Card(
-              child: ListTile(
-                leading: FlutterLogo(),
-                title: Text('shared_preferences'),
-                subtitle: Text('Wraps NSUserDefaults (on iOS) and SharedPreferences (on Android).'),
-                trailing: RaisedButton.icon(
-                  onPressed: () => _launchUrl('https://pub.dev/packages/shared_preferences'),
-                  icon: Icon(Icons.link),
-                  label: Text('Link'),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SharedPreferencesScreen()),
-                  );
-                },
-              ),
+            _buildLibraryInformationCard(
+              'shared_preferences',
+              'Wraps NSUserDefaults (on iOS) and SharedPreferences (on Android).',
+              'https://pub.dev/packages/shared_preferences',
+              context,
+              SharedPreferencesScreen()
             ),
-            Card(
-              child: ListTile(
-                leading: FlutterLogo(),
-                title: Text('sqflite'),
-                subtitle: Text('SQLite plugin for Flutter'),
-                trailing: RaisedButton.icon(
-                  onPressed: () => _launchUrl('https://pub.dev/packages/sqflite'),
-                  icon: Icon(Icons.link),
-                  label: Text('Link'),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SqfliteScreen()),
-                  );
-                },
-              ),
+            _buildLibraryInformationCard(
+              'sqflite',
+              'SQLite plugin for Flutter',
+              'https://pub.dev/packages/sqflite',
+              context,
+              SqfliteScreen()
             ),
-            Card(
-              child: ListTile(
-                leading: FlutterLogo(),
-                title: Text('dio'),
-                subtitle: Text('A powerful Http client for Dart'),
-                trailing: RaisedButton.icon(
-                  onPressed: () => _launchUrl('https://pub.dev/packages/dio'),
-                  icon: Icon(Icons.link),
-                  label: Text('Link'),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => DioScreen()),
-                  );
-                }
-              ),
+            _buildLibraryInformationCard(
+              'dio',
+              'A powerful Http client for Dart',
+              'https://pub.dev/packages/dio',
+              context,
+              DioScreen()
             ),
           ]
         )
