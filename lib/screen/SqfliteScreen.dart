@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice_library/bloc/SqfliteBloc.dart';
 import 'package:flutter_practice_library/core/DatabaseHelper.dart';
+import 'package:provider/provider.dart';
 
 class SqfliteScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Provider<SqfliteBloc>(
+      create: (context) => SqfliteBloc(),
+      dispose: (context, bloc) => bloc.dispose(),
+      child: _Screen(),
+    );
+  }
+}
+
+class _Screen extends StatelessWidget {
 
   final dbHelper = DatabaseHelper.instance;
 
