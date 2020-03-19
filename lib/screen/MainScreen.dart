@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice_library/screen/DeviceInfoScreen.dart';
 import 'package:flutter_practice_library/screen/DioScreen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -80,6 +81,13 @@ class MainScreen extends StatelessWidget {
               'https://pub.dev/packages/dio',
               context,
               DioScreen()
+            ),
+            _buildLibraryInformationCard(
+              'device_info',
+              'Get current device information from within the Flutter application.',
+              'https://pub.dev/packages/device_info',
+              context,
+              DeviceInfoScreen()
             ),
           ]
         )
