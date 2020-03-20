@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice_library/screen/DeviceInfoScreen.dart';
 import 'package:flutter_practice_library/screen/DioScreen.dart';
+import 'package:flutter_practice_library/screen/PackageInfoScreen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter_practice_library/screen/SharedPreferencesScreen.dart';
@@ -88,6 +89,13 @@ class MainScreen extends StatelessWidget {
               'https://pub.dev/packages/device_info',
               context,
               DeviceInfoScreen()
+            ),
+            _buildLibraryInformationCard(
+              'package_info',
+              'This Flutter plugin provides an API for querying information about an application package.',
+              'https://pub.dev/packages/package_info',
+              context,
+              PackageInfoScreen()
             ),
           ]
         )
