@@ -31,7 +31,7 @@ class SharedPreferencesBloc {
     _printController.stream.listen((_) {
       print('KEY: $_key');
       final printedValue = SharedPreferencesWrapper.getValue(_key);
-      print('VALUE: $printedValue');
+      print('VALUE: $printedValue'); // TODO: modify (Promise)
     });
   }
 
