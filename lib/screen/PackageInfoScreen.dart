@@ -2,49 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';
 
 class PackageInfoScreen extends StatelessWidget {
+  Widget _createPackageInfoCard(String title, String information) {
+    return Card(
+      child: ListTile(
+        title: Text(title),
+        subtitle: Text(information),
+      ),
+    );
+  }
+
   Widget _buildPackageInfo(PackageInfo packageInfo) {
 
     List<Widget> _widgetList = [];
     _widgetList.add(Text('Practice - package_info'));
     if (packageInfo.appName != null) {
-      _widgetList.add(
-        Card(
-          child: ListTile(
-            title: Text("App Name"),
-            subtitle: Text(packageInfo.appName),
-          ),
-        )
-      );
+      _widgetList.add(_createPackageInfoCard("App Name", packageInfo.appName));
     }
     if (packageInfo.packageName != null) {
-      _widgetList.add(
-        Card(
-          child: ListTile(
-            title: Text("Package Name"),
-            subtitle: Text(packageInfo.packageName),
-          ),
-        )
-      );
+      _widgetList.add(_createPackageInfoCard("Package Name", packageInfo.packageName));
     }
     if (packageInfo.version != null) {
-      _widgetList.add(
-        Card(
-          child: ListTile(
-            title: Text("Version"),
-            subtitle: Text(packageInfo.version),
-          ),
-        )
-      );
+      _widgetList.add(_createPackageInfoCard("Version", packageInfo.version));
     }
     if (packageInfo.buildNumber != null) {
-      _widgetList.add(
-        Card(
-          child: ListTile(
-            title: Text("Build Number"),
-            subtitle: Text(packageInfo.buildNumber),
-          ),
-        )
-      );
+      _widgetList.add(_createPackageInfoCard("Build Number", packageInfo.buildNumber));
     }
     return ListView(
       children: _widgetList
