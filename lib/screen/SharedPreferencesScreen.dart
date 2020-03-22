@@ -15,27 +15,10 @@ class SharedPreferencesScreen extends StatelessWidget {
 }
 
 class _Screen extends StatelessWidget {
-  final keyName = 'keyOne';
-
-  void _read() async {
-    final value = await SharedPreferencesWrapper.getValue(keyName) ?? 0;
-    print('read: $value');
-  }
-
-  void _save() async {
-    int value = await SharedPreferencesWrapper.getValue(keyName) ?? 0;
-    value++;
-    SharedPreferencesWrapper.setInt(keyName, value);
-    print('saved $value');
-  }
-
-  void _reset() async {
-    SharedPreferencesWrapper.setInt(keyName, 0);
-    print('reset');
-  }
-
   @override
   Widget build(BuildContext context) {
+    final bloc = Provider.of<SharedPreferencesBloc>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Practice - shared_preferences"),
@@ -45,23 +28,34 @@ class _Screen extends StatelessWidget {
           children: <Widget>[
             Container(
               padding: EdgeInsets.all(8.0),
+              child: TextField(
+                decoration: InputDecoration(labelText: 'input KEY'),
+                onChanged: (String value) async {
+                  bloc.inputKey.add(value);
+                },
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(8.0),
+              child: TextField(
+                decoration: InputDecoration(labelText: 'input VALUE'),
+                onChanged: (String value) async {
+                  bloc.inputValue.add(value);
+                },
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(8.0),
               child: RaisedButton(
                 child: Text('SAVE'),
-                onPressed: _save,
+                onPressed: () => bloc.requestSave.add(null),
               ),
             ),
             Container(
               padding: EdgeInsets.all(8.0),
               child: RaisedButton(
-                child: Text('READ'),
-                onPressed: _read,
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(8.0),
-              child: RaisedButton(
-                child: Text('RESET'),
-                onPressed: _reset,
+                child: Text('DEBUG: PRINT'),
+                onPressed: () => bloc.getPrint.add(null),
               ),
             ),
           ],

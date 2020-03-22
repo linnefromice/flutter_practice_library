@@ -15,6 +15,9 @@ class SharedPreferencesBloc {
   final _saveController = StreamController<void>();
   Sink<void> get requestSave => _saveController.sink;
 
+  final _printController = StreamController<void>();
+  Sink<void> get getPrint => _printController.sink;
+
   SharedPreferencesBloc() {
     _inputKeyController.stream.listen((val) {
       _key = val;
@@ -25,11 +28,17 @@ class SharedPreferencesBloc {
     _saveController.stream.listen((_) {
       SharedPreferencesWrapper.setString(_key, _value);
     });
+    _printController.stream.listen((_) {
+      print('KEY: $_key');
+      final printedValue = SharedPreferencesWrapper.getValue(_key);
+      print('VALUE: $printedValue');
+    });
   }
 
   void dispose() {
     _inputKeyController.close();
     _inputValueController.close();
     _saveController.close();
+    _printController.close();
   }
 }
