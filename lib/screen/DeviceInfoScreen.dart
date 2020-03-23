@@ -19,8 +19,12 @@ class DeviceInfoScreen extends StatelessWidget {
               if (snapshot.hasData) {
                 return ListView(
                   children: <Widget>[
-                    Text("DEVICE"),
-                    Text(snapshot.data.display)
+                    Card(
+                      child: ListTile(
+                        title: Text('DEVICE'),
+                        subtitle: Text(snapshot.data.display),
+                      ),
+                    ),
                   ],
                 );
               } else {
@@ -43,8 +47,12 @@ class DeviceInfoScreen extends StatelessWidget {
               if (snapshot.hasData) {
                 return ListView(
                   children: <Widget>[
-                    Text("DEVICE"),
-                    Text(snapshot.data.utsname.machine)
+                    Card(
+                      child: ListTile(
+                        title: Text('DEVICE'),
+                        subtitle: Text(snapshot.data.utsname.machine),
+                      ),
+                    )
                   ],
                 );
               } else {
