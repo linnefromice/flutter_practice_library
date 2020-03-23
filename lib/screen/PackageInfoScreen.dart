@@ -14,7 +14,13 @@ class PackageInfoScreen extends StatelessWidget {
   Widget _buildPackageInfo(PackageInfo packageInfo) {
 
     List<Widget> _widgetList = [];
-    _widgetList.add(Text('Practice - package_info'));
+    _widgetList.add(
+      Card(
+        child: ListTile(
+          title: Text('Practice - package_info'),
+        ),
+      )
+    );
     if (packageInfo.appName != null) {
       _widgetList.add(_createPackageInfoCard("App Name", packageInfo.appName));
     }
