@@ -4,6 +4,15 @@ import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 
 class DeviceInfoScreen extends StatelessWidget {
+  Widget _createDeviceInfoCard(String title, String information) {
+    return Card(
+      child: ListTile(
+        title: Text(title),
+        subtitle: Text(information),
+      ),
+    );
+  }
+
   Widget _buildScaffoldForAndroid() {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     return Scaffold(
@@ -17,12 +26,7 @@ class DeviceInfoScreen extends StatelessWidget {
             if (snapshot.hasData) {
               return ListView(
                 children: <Widget>[
-                  Card(
-                    child: ListTile(
-                      title: Text('DEVICE'),
-                      subtitle: Text(snapshot.data.display),
-                    ),
-                  ),
+                  _createDeviceInfoCard('DEVICE', snapshot.data.display)
                 ],
               );
             } else {
@@ -47,12 +51,7 @@ class DeviceInfoScreen extends StatelessWidget {
             if (snapshot.hasData) {
               return ListView(
                 children: <Widget>[
-                  Card(
-                    child: ListTile(
-                      title: Text('DEVICE'),
-                      subtitle: Text(snapshot.data.utsname.machine),
-                    ),
-                  )
+                  _createDeviceInfoCard('DEVICE', snapshot.data.utsname.machine)
                 ],
               );
             } else {
