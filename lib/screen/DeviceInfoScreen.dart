@@ -24,9 +24,13 @@ class DeviceInfoScreen extends StatelessWidget {
           future: deviceInfo.androidInfo,
           builder: (BuildContext context, AsyncSnapshot<AndroidDeviceInfo> snapshot) {
             if (snapshot.hasData) {
+              AndroidDeviceInfo _info = snapshot.data;
               return ListView(
                 children: <Widget>[
-                  _createDeviceInfoCard('DEVICE', snapshot.data.display)
+                  _createDeviceInfoCard('version.securityPatch', _info.version.securityPatch),
+                  _createDeviceInfoCard('version.sdkInt', _info.version.sdkInt.toString()),
+                  _createDeviceInfoCard('version.release', _info.version.release),
+                  _createDeviceInfoCard('version.previewSdkInt', _info.version.previewSdkInt.toString()),
                 ],
               );
             } else {
@@ -49,9 +53,13 @@ class DeviceInfoScreen extends StatelessWidget {
           future: deviceInfo.iosInfo,
           builder: (BuildContext context, AsyncSnapshot<IosDeviceInfo> snapshot) {
             if (snapshot.hasData) {
+              IosDeviceInfo _info = snapshot.data;
               return ListView(
                 children: <Widget>[
-                  _createDeviceInfoCard('DEVICE', snapshot.data.utsname.machine)
+                  _createDeviceInfoCard('name', _info.name),
+                  _createDeviceInfoCard('systemName', _info.systemName),
+                  _createDeviceInfoCard('systemVersion', _info.systemVersion),
+                  _createDeviceInfoCard('model', _info.model),
                 ],
               );
             } else {
