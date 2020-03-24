@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice_library/screen/DeviceInfoScreen.dart';
 import 'package:flutter_practice_library/screen/DioScreen.dart';
+import 'package:flutter_practice_library/screen/FlutterSwiperScreen.dart';
+import 'package:flutter_practice_library/screen/FlutterWebviewPluginScreen.dart';
 import 'package:flutter_practice_library/screen/PackageInfoScreen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -95,14 +97,14 @@ class MainScreen extends StatelessWidget {
               'Plugin that allows Flutter to communicate with a native WebView.',
               'https://pub.dev/packages/flutter_webview_plugin',
               context,
-              MainScreen(), // dummy
+              FlutterWebviewPluginScreen(), // dummy
             ),
             _buildLibraryInformationCard(
               'flutter_swiper',
               'The best swiper for flutter , with multiple layouts, infinite loop. Compatible with Android & iOS.',
               'https://pub.dev/packages/flutter_swiper',
               context,
-              MainScreen(), // dummy
+              FlutterSwiperScreen(), // dummy
             ),
           ]
         )
