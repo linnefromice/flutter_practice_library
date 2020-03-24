@@ -29,10 +29,14 @@ class SharedPreferencesBloc {
       SharedPreferencesWrapper.setString(_key, _value);
     });
     _printController.stream.listen((_) {
-      print('KEY: $_key');
-      final printedValue = SharedPreferencesWrapper.getValue(_key);
-      print('VALUE: $printedValue'); // TODO: modify (Promise)
+      _printValue();
     });
+  }
+
+  void _printValue() async {
+    print('KEY: $_key');
+    final printedValue = await SharedPreferencesWrapper.getValue(_key);
+    print('VALUE: $printedValue');
   }
 
   void dispose() {
