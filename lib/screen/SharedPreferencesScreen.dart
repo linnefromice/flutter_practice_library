@@ -54,10 +54,20 @@ class _Screen extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(8.0),
               child: RaisedButton(
-                child: Text('DEBUG: PRINT'),
-                onPressed: () => bloc.getPrint.add(null),
+                child: Text('PRINT'),
+                onPressed: () => bloc.requestPrint.add(null),
               ),
             ),
+            StreamBuilder(
+              initialData: '',
+              stream: bloc.listenSelectedValue,
+              builder: (context, snapshot) {
+                return Container(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(snapshot.data),
+                );
+              },
+            )
           ],
         )
       ),
