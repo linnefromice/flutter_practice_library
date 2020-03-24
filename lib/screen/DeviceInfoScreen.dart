@@ -59,7 +59,13 @@ class DeviceInfoScreen extends StatelessWidget {
                   _createDeviceInfoCard('name', _info.name),
                   _createDeviceInfoCard('systemName', _info.systemName),
                   _createDeviceInfoCard('systemVersion', _info.systemVersion),
-                  _createDeviceInfoCard('model', _info.model),
+                  _createDeviceInfoCard('localizedModel', _info.localizedModel),
+                  _createDeviceInfoCard('identifierForVendor', _info.identifierForVendor),
+                  _createDeviceInfoCard('isPhysicalDevice', _info.isPhysicalDevice.toString()),
+                  _createDeviceInfoCard('utsname.sysname', _info.utsname.sysname),
+                  _createDeviceInfoCard('utsname.nodename', _info.utsname.nodename),
+                  _createDeviceInfoCard('utsname.release', _info.utsname.release),
+                  _createDeviceInfoCard('utsname.machine', _info.utsname.machine),
                 ],
               );
             } else {
