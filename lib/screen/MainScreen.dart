@@ -91,11 +91,18 @@ class MainScreen extends StatelessWidget {
               DeviceInfoScreen()
             ),
             _buildLibraryInformationCard(
-              'package_info',
-              'This Flutter plugin provides an API for querying information about an application package.',
-              'https://pub.dev/packages/package_info',
+              'flutter_webview_plugin',
+              'Plugin that allows Flutter to communicate with a native WebView.',
+              'https://pub.dev/packages/flutter_webview_plugin',
               context,
-              PackageInfoScreen()
+              MainScreen(), // dummy
+            ),
+            _buildLibraryInformationCard(
+              'flutter_swiper',
+              'The best swiper for flutter , with multiple layouts, infinite loop. Compatible with Android & iOS.',
+              'https://pub.dev/packages/flutter_swiper',
+              context,
+              MainScreen(), // dummy
             ),
           ]
         )
