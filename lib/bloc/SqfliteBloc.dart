@@ -49,7 +49,7 @@ class SqfliteBloc {
   void _update() async {
     Map<String, dynamic> row = {
       DatabaseHelper.columnId: 1,
-      DatabaseHelper.columnName: 'harvey',
+      DatabaseHelper.columnName: 'Harvey',
       DatabaseHelper.columnAge: 30
     };
     final rowsAffected = await dbHelper.update(row);

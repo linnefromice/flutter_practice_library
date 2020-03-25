@@ -51,7 +51,23 @@ class _Screen extends StatelessWidget {
               initialData: [],
               stream: bloc.listenQuery,
               builder: (context, snapshot) {
-                return Text(snapshot.data.toString());
+                List<Widget> widgets = [];
+                List<dynamic> datas = snapshot.data;
+                datas.forEach((_data) {
+                  widgets.add(
+                    Card(
+                      child: ListTile(
+                        leading: Text(_data['_id'].toString()),
+                        title: Text(_data['name']),
+                        subtitle: Text(_data['age'].toString()),
+                      ),
+                    )
+                  );
+                });
+
+                return Column(
+                  children: widgets,
+                );
               },
             )
           ],
