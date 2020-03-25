@@ -8,8 +8,8 @@ class SqfliteBloc {
   final _insertController = StreamController<void>();
   Sink<void> get requestInsert => _insertController.sink;
 
-  final _queryController = StreamController<void>();
-  Sink<void> get requestQuery => _queryController.sink;
+  final _queryController = StreamController<List<Map<String, dynamic>>>();
+  Stream<List<Map<String, dynamic>>> get listenQuery => _queryController.stream;
 
   final _updateController = StreamController<void>();
   Sink<void> get requestUpdate => _updateController.sink;
@@ -20,15 +20,15 @@ class SqfliteBloc {
   SqfliteBloc() {
     _insertController.stream.listen((_) {
       _insert();
-    });
-    _queryController.stream.listen((_) {
       _query();
     });
     _updateController.stream.listen((_) {
       _update();
+      _query();
     });
     _deleteController.stream.listen((_) {
       _delete();
+      _query();
     });
   }
 
@@ -44,6 +44,7 @@ class SqfliteBloc {
     final allRows = await dbHelper.queryAllRows();
     print('query all rows:');
     allRows.forEach((row) => print(row));
+    _queryController.sink.add(allRows);
   }
   void _update() async {
     Map<String, dynamic> row = {

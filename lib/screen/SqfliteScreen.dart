@@ -35,13 +35,6 @@ class _Screen extends StatelessWidget {
             ),
             RaisedButton(
               child: Text(
-                'query',
-                style: TextStyle(fontSize: 20),
-              ),
-              onPressed: () => bloc.requestQuery.add(null),
-            ),
-            RaisedButton(
-              child: Text(
                 'update',
                 style: TextStyle(fontSize: 20)
               ),
