@@ -47,6 +47,13 @@ class _Screen extends StatelessWidget {
               ),
               onPressed: () => bloc.requestDelete.add(null),
             ),
+            StreamBuilder(
+              initialData: [],
+              stream: bloc.listenQuery,
+              builder: (context, snapshot) {
+                return Text(snapshot.data.toString());
+              },
+            )
           ],
         )
       ),
