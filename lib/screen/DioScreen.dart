@@ -23,9 +23,29 @@ class _Screen extends StatelessWidget {
         title: Text('Practice - dio')
       ),
       body: Center(
-        child: RaisedButton(
-          child: Text('REQUEST'),
-          onPressed: () => bloc.requestApi.add(null),
+        child: Column(
+          children: <Widget>[
+            RaisedButton(
+              child: Text('REQUEST'),
+              onPressed: () => bloc.requestApi.add(null),
+            ),
+            StreamBuilder(
+              initialData: null,
+              stream: bloc.responseApi,
+              builder: (context, snapshot) {
+                if (snapshot.data == null) {
+                  return Text('NO DATA');
+                } else {
+                  return ListTile(
+                    leading: Text(snapshot.data['id'].toString()),
+                    title: Text(snapshot.data['title']),
+                    subtitle: Text(snapshot.data['body']),
+                    trailing: Text(snapshot.data['userId'].toString()),
+                  );
+                }
+              },
+            )
+          ],
         )
       ),
     );
