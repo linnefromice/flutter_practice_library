@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_practice_library/model/jsonplaceholder/Post.dart';
+import 'package:flutter_practice_library/service/jsonplaceholder/PostService.dart';
 
 class DioBloc {
   String _inputedId;
@@ -26,15 +27,17 @@ class DioBloc {
   }
 
   _request() async {
-    final dio = Dio();
     List<Post> posts = [];
-    final url = 'https://jsonplaceholder.typicode.com/posts';
     if (_inputedId == '') {
-      Response response = await dio.get(url);
-      response.data.forEach((v) => posts.add(Post.fromJson(v)));
+      posts = await PostService.findPosts();
     } else {
-      Response response = await dio.get(url + '/' + _inputedId);
-      posts.add(Post.fromJson(response.data));
+      int _id;
+      try {
+        _id = int.parse(_inputedId);
+        posts.add(await PostService.findPostbyId(_id));
+      } catch (exception) {
+        posts = await PostService.findPosts();
+      }
     }
     _responseApiController.sink.add(posts);
   }
