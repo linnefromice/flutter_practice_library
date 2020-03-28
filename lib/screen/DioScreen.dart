@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice_library/bloc/DioBloc.dart';
+import 'package:flutter_practice_library/model/jsonplaceholder/Post.dart';
 import 'package:provider/provider.dart';
 
 class DioScreen extends StatelessWidget {
@@ -14,6 +15,21 @@ class DioScreen extends StatelessWidget {
 }
 
 class _Screen extends StatelessWidget {
+  List<Widget> _buildPostCards(final List<Post> entries) {
+    List<Widget> widgets = [];
+    entries.forEach((dto) => widgets.add(
+      Card(
+        child: ListTile(
+          leading: Text(dto.id.toString()),
+          title: Text(dto.title),
+          subtitle: Text(dto.body),
+          trailing: Text(dto.userId.toString()),
+        ),
+      )
+    ));
+    return widgets;
+  }
+
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of<DioBloc>(context);
@@ -36,11 +52,9 @@ class _Screen extends StatelessWidget {
                 if (snapshot.data == null) {
                   return Text('NO DATA');
                 } else {
-                  return ListTile(
-                    leading: Text(snapshot.data.id.toString()),
-                    title: Text(snapshot.data.title),
-                    subtitle: Text(snapshot.data.body),
-                    trailing: Text(snapshot.data.userId.toString()),
+                  List<Widget> widgets = _buildPostCards(snapshot.data);
+                  return Column(
+                    children: widgets,
                   );
                 }
               },

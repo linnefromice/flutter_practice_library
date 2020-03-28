@@ -7,8 +7,8 @@ class DioBloc {
   final _requestApiController = StreamController<void>();
   Sink<void> get requestApi => _requestApiController.sink;
 
-  final _responseApiController = StreamController<Post>();
-  Stream<Post> get responseApi => _responseApiController.stream;
+  final _responseApiController = StreamController<List<Post>>();
+  Stream<List<Post>> get responseApi => _responseApiController.stream;
 
   DioBloc() {
     _requestApiController.stream.listen((_) {
@@ -18,9 +18,10 @@ class DioBloc {
 
   _request() async {
     final dio = Dio();
-    Response response = await dio.get('https://jsonplaceholder.typicode.com/posts/1');
-    final Post post = Post.fromJson(response.data);
-    _responseApiController.sink.add(post);
+    Response response = await dio.get('https://jsonplaceholder.typicode.com/posts');
+    List<Post> posts = [];
+    response.data.forEach((v) => posts.add(Post.fromJson(v)));
+    _responseApiController.sink.add(posts);
   }
 
   void dispose() {
