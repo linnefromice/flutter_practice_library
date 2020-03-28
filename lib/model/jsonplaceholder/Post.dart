@@ -1,36 +1,36 @@
 // To parse this JSON data, do
 //
-//     final user = userFromJson(jsonString);
+//     final post = postFromJson(jsonString);
 
 import 'dart:convert';
 
-class User {
-  final int userId;
+class Post {
   final int id;
+  final int userId;
   final String title;
   final String body;
 
-  User({
-    this.userId,
+  Post({
     this.id,
+    this.userId,
     this.title,
     this.body,
   });
 
-  factory User.fromRawJson(String str) => User.fromJson(json.decode(str));
+  factory Post.fromRawJson(String str) => Post.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
-    userId: json["userId"],
+  factory Post.fromJson(Map<String, dynamic> json) => Post(
     id: json["id"],
+    userId: json["userId"],
     title: json["title"],
     body: json["body"],
   );
 
   Map<String, dynamic> toJson() => {
-    "userId": userId,
     "id": id,
+    "userId": userId,
     "title": title,
     "body": body,
   };
