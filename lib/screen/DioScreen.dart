@@ -42,9 +42,12 @@ class _Screen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              RaisedButton(
-                child: Text('REQUEST'),
-                onPressed: () => bloc.requestApi.add(null),
+              Container(
+                padding: EdgeInsets.all(2.0),
+                child: RaisedButton(
+                  child: Text('REQUEST'),
+                  onPressed: () => bloc.requestApi.add(null),
+                ),
               ),
               Container(
                 child: StreamBuilder(
