@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_practice_library/bloc/DioBloc.dart';
 import 'package:flutter_practice_library/model/jsonplaceholder/Post.dart';
 import 'package:provider/provider.dart';
@@ -47,6 +48,19 @@ class _Screen extends StatelessWidget {
                 child: RaisedButton(
                   child: Text('REQUEST'),
                   onPressed: () => bloc.requestApi.add(null),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(2.0),
+                child: TextField(
+                  decoration: InputDecoration(labelText: 'input ID'),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    WhitelistingTextInputFormatter.digitsOnly
+                  ],
+                  onChanged: (String value) async {
+                    bloc.inputId.add(value);
+                  },
                 ),
               ),
               Container(

@@ -19,6 +19,7 @@ class DioBloc {
     _requestApiController.stream.listen((_) {
       _request();
     });
+    _inputedId = '';
     _inputedIdController.stream.listen((val) {
       _inputedId = val;
     });
@@ -26,9 +27,15 @@ class DioBloc {
 
   _request() async {
     final dio = Dio();
-    Response response = await dio.get('https://jsonplaceholder.typicode.com/posts');
     List<Post> posts = [];
-    response.data.forEach((v) => posts.add(Post.fromJson(v)));
+    final url = 'https://jsonplaceholder.typicode.com/posts';
+    if (_inputedId == '') {
+      Response response = await dio.get(url);
+      response.data.forEach((v) => posts.add(Post.fromJson(v)));
+    } else {
+      Response response = await dio.get(url + '/' + _inputedId);
+      posts.add(Post.fromJson(response.data));
+    }
     _responseApiController.sink.add(posts);
   }
 
