@@ -37,10 +37,10 @@ class _Screen extends StatelessWidget {
                   return Text('NO DATA');
                 } else {
                   return ListTile(
-                    leading: Text(snapshot.data['id'].toString()),
-                    title: Text(snapshot.data['title']),
-                    subtitle: Text(snapshot.data['body']),
-                    trailing: Text(snapshot.data['userId'].toString()),
+                    leading: Text(snapshot.data.id.toString()),
+                    title: Text(snapshot.data.title),
+                    subtitle: Text(snapshot.data.body),
+                    trailing: Text(snapshot.data.userId.toString()),
                   );
                 }
               },
