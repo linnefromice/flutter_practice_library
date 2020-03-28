@@ -39,27 +39,31 @@ class _Screen extends StatelessWidget {
         title: Text('Practice - dio')
       ),
       body: Center(
-        child: Column(
-          children: <Widget>[
-            RaisedButton(
-              child: Text('REQUEST'),
-              onPressed: () => bloc.requestApi.add(null),
-            ),
-            StreamBuilder(
-              initialData: null,
-              stream: bloc.responseApi,
-              builder: (context, snapshot) {
-                if (snapshot.data == null) {
-                  return Text('NO DATA');
-                } else {
-                  List<Widget> widgets = _buildPostCards(snapshot.data);
-                  return Column(
-                    children: widgets,
-                  );
-                }
-              },
-            )
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              RaisedButton(
+                child: Text('REQUEST'),
+                onPressed: () => bloc.requestApi.add(null),
+              ),
+              Container(
+                child: StreamBuilder(
+                  initialData: null,
+                  stream: bloc.responseApi,
+                  builder: (context, snapshot) {
+                    if (snapshot.data == null) {
+                      return Text('NO DATA');
+                    } else {
+                      List<Widget> widgets = _buildPostCards(snapshot.data);
+                      return Column(
+                        children: widgets,
+                      );
+                    }
+                  },
+                ),
+              ),
+            ],
+          ),
         )
       ),
     );
