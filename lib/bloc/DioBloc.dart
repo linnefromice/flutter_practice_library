@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:dio/dio.dart';
 import 'package:flutter_practice_library/model/jsonplaceholder/Post.dart';
 import 'package:flutter_practice_library/service/JsonplaceholderService.dart';
 
@@ -32,7 +31,7 @@ class DioBloc {
     _inputedType = 'posts';
     _inputedTypeController.stream.listen((val) {
       _inputedType = val;
-      _inputedTypeController.sink.add(val);
+      _inputedTypeController.sink.add(_inputedType);
     });
   }
 
