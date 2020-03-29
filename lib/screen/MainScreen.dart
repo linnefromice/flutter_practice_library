@@ -87,6 +87,13 @@ class MainScreen extends StatelessWidget {
             ),
             _buildLibraryInformationCard(
               'device_info',
+              'This Flutter plugin provides an API for querying information about an application package.',
+              'https://pub.dev/packages/package_info',
+              context,
+              PackageInfoScreen()
+            ),
+            _buildLibraryInformationCard(
+              'device_info',
               'Get current device information from within the Flutter application.',
               'https://pub.dev/packages/device_info',
               context,
