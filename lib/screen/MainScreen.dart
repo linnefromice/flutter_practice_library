@@ -86,7 +86,7 @@ class MainScreen extends StatelessWidget {
               DioScreen()
             ),
             _buildLibraryInformationCard(
-              'device_info',
+              'package_info',
               'This Flutter plugin provides an API for querying information about an application package.',
               'https://pub.dev/packages/package_info',
               context,

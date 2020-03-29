@@ -50,33 +50,6 @@ class _Screen extends StatelessWidget {
                   onPressed: () => bloc.requestApi.add(null),
                 ),
               ),
-              /*
-              Container(
-                padding: EdgeInsets.all(2.0),
-                child: StreamBuilder(
-                  initialData: 'posts',
-                  stream: bloc.getType,
-                  builder: (context, snapshot) {
-                    return DropdownButton<String>(
-                      value: snapshot.data,
-                      icon: Icon(Icons.arrow_downward),
-                      iconSize: 24,
-                      elevation: 16,
-                      onChanged: (String newValue) async {
-                        bloc.inputType.add(newValue);
-                      },
-                      items: <String>['posts', 'comments', 'albums', 'photos', 'todos', 'users']
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                    );
-                  },
-                )
-              ),
-               */
               Container(
                 padding: EdgeInsets.all(2.0),
                 child: TextField(
@@ -113,3 +86,43 @@ class _Screen extends StatelessWidget {
     );
   }
 }
+
+/*
+class _DropdownButton extends StatelessWidget {
+  Widget _buildButton(BuildContext context) {
+    final bloc = Provider.of<DioBloc>(context);
+
+    return StreamBuilder(
+      initialData: 'posts',
+      stream: bloc.getType,
+      builder: (context, snapshot) {
+        return DropdownButton<String>(
+          value: snapshot.data,
+          icon: Icon(Icons.arrow_downward),
+          iconSize: 24,
+          elevation: 16,
+          onChanged: (String newValue) async {
+            bloc.inputType.add(newValue);
+          },
+          items: <String>['posts', 'comments', 'albums', 'photos', 'todos', 'users']
+              .map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Provider<DioBloc>(
+      create: (context) => DioBloc(),
+      dispose: (context, bloc) => bloc.dispose(),
+      child: _buildButton(context),
+    );
+  }
+}
+*/
