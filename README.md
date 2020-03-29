@@ -14,6 +14,18 @@ https://pub.dev/packages/sqflite
 
 https://www.techiediaries.com/flutter/dart-flutter-sqlite-database-tutorial-crud-sqflite/
 
+### dio
+
+https://pub.dev/packages/dio
+
+### package_info
+
+https://pub.dev/packages/package_info
+
+### device_info
+
+https://pub.dev/packages/device_info
+
 ## Reference
 
 - [pub.dev](https://pub.dev/)
