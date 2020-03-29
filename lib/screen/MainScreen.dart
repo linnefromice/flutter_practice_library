@@ -113,6 +113,34 @@ class MainScreen extends StatelessWidget {
               context,
               FlutterSwiperScreen(), // dummy
             ),
+            _buildLibraryInformationCard(
+              'connectivity',
+              'This plugin allows Flutter apps to discover network connectivity and configure themselves accordingly.',
+              'https://pub.dev/packages/connectivity',
+              context,
+              MainScreen(), // dummy
+            ),
+            _buildLibraryInformationCard(
+              'rxdart',
+              'RxDart adds additional capabilities to Dart Streams and StreamControllers.',
+              'https://pub.dev/packages/rxdart',
+              context,
+              MainScreen(), // dummy
+            ),
+            _buildLibraryInformationCard(
+              'built_value',
+              'Built Values for Dart',
+              'https://pub.dev/packages/built_value',
+              context,
+              MainScreen(), // dummy
+            ),
+            _buildLibraryInformationCard(
+              'battery',
+              'A Flutter plugin to access various information about the battery of the device the app is running on.',
+              'https://pub.dev/packages/battery',
+              context,
+              MainScreen(), // dummy
+            ),
           ]
         )
       ),
