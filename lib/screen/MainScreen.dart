@@ -24,6 +24,46 @@ const libraryInformationList = [
     "name": "dio",
     "description": "A powerful Http client for Dart",
     "url": "https://pub.dev/packages/dio"
+  },
+  {
+    "name": "package_info",
+    "description": "This Flutter plugin provides an API for querying information about an application package.",
+    "url": "https://pub.dev/packages/package_info"
+  },
+  {
+    "name": "device_info",
+    "description": "Get current device information from within the Flutter application.",
+    "url": "https://pub.dev/packages/device_info"
+  },
+  {
+    "name": "flutter_webview_plugin",
+    "description": "Plugin that allows Flutter to communicate with a native WebView.",
+    "url": "https://pub.dev/packages/flutter_webview_plugin"
+  },
+  {
+    "name": "flutter_swiper",
+    "description": "The best swiper for flutter , with multiple layouts, infinite loop. Compatible with Android & iOS.",
+    "url": "https://pub.dev/packages/flutter_swiper"
+  },
+  {
+    "name": "connectivity",
+    "description": "This plugin allows Flutter apps to discover network connectivity and configure themselves accordingly.",
+    "url": "https://pub.dev/packages/connectivity"
+  },
+  {
+    "name": "rxdart",
+    "description": "RxDart adds additional capabilities to Dart Streams and StreamControllers.",
+    "url": "https://pub.dev/packages/rxdart"
+  },
+  {
+    "name": "built_value",
+    "description": "Built Values for Dart",
+    "url": "https://pub.dev/packages/built_value"
+  },
+  {
+    "name": "battery",
+    "description": "A Flutter plugin to access various information about the battery of the device the app is running on.",
+    "url": "https://pub.dev/packages/battery"
   }
 ];
 
