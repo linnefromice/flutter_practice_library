@@ -56,6 +56,22 @@ class _State extends State<_Screen> {
           children: <Widget>[
             Text('PracticeBlocAndStatefulWidgetScreen'),
             _buildDropdownButton(context, bloc),
+            RaisedButton.icon(
+              icon: Icon(Icons.apps),
+              label: Text('REQUEST'),
+              onPressed: () => bloc.requestApi.add(_dropdownValue),
+            ),
+            StreamBuilder(
+              initialData: 'NO DATA',
+              stream: bloc.responseApi,
+              builder: (context, snapshot) {
+                if (snapshot.data == null) {
+                  return Text('NO DATA');
+                } else {
+                  return Text(snapshot.data);
+                }
+              },
+            ),
           ],
         ),
       ),
