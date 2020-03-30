@@ -4,6 +4,7 @@ import 'package:flutter_practice_library/screen/DioScreen.dart';
 import 'package:flutter_practice_library/screen/FlutterSwiperScreen.dart';
 import 'package:flutter_practice_library/screen/FlutterWebviewPluginScreen.dart';
 import 'package:flutter_practice_library/screen/PackageInfoScreen.dart';
+import 'package:flutter_practice_library/screen/practice/PracticeBlocAndStatefulWidgetScreen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter_practice_library/screen/SharedPreferencesScreen.dart';
@@ -117,6 +118,12 @@ class MainScreen extends StatelessWidget {
             ListTile(
               title: Text('PracticeBlocAndStatefulWidget'),
               subtitle: Text('bloc X StatefulWidget'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PracticeBlocAndStatefulWidgetScreen()),
+                );
+              },
             ),
           ],
         ),
