@@ -19,14 +19,47 @@ class _Screen extends StatefulWidget {
 }
 
 class _State extends State<_Screen> {
+
+  Widget _buildDropdownButton(BuildContext context, PracticeOneBloc bloc) {
+    return StreamBuilder(
+      initialData: 'posts',
+      stream: bloc.getType,
+      builder: (context, snapshot) {
+        return DropdownButton<String>(
+          value: snapshot.data,
+          icon: Icon(Icons.arrow_downward),
+          iconSize: 24,
+          elevation: 16,
+          onChanged: (String newValue) async {
+            bloc.inputType.add(newValue);
+          },
+          items: <String>['posts', 'comments', 'albums', 'photos', 'todos', 'users']
+              .map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final bloc = Provider.of<PracticeOneBloc>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('PracticeBlocAndStatefulWidgetScreen'),
       ),
       body: Center(
-        child: Text('PracticeBlocAndStatefulWidgetScreen'),
+        child: Column(
+          children: <Widget>[
+            Text('PracticeBlocAndStatefulWidgetScreen'),
+            _buildDropdownButton(context, bloc),
+          ],
+        ),
       ),
     );
   }
