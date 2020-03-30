@@ -101,6 +101,26 @@ class MainScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Flutter Practice Library"),
       ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: ListTile(
+                title: Text('Dummy Pages'),
+                subtitle: Text('For Practice'),
+              ),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            ListTile(
+              title: Text('PracticeBlocAndStatefulWidget'),
+              subtitle: Text('bloc X StatefulWidget'),
+            ),
+          ],
+        ),
+      ),
       body: Center(
         child: ListView(
           children: <Widget>[
