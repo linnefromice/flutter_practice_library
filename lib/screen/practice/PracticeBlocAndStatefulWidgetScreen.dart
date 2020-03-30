@@ -20,28 +20,26 @@ class _Screen extends StatefulWidget {
 
 class _State extends State<_Screen> {
 
+  String _dropdownValue = 'posts';
+
   Widget _buildDropdownButton(BuildContext context, PracticeOneBloc bloc) {
-    return StreamBuilder(
-      initialData: 'posts',
-      stream: bloc.getType,
-      builder: (context, snapshot) {
-        return DropdownButton<String>(
-          value: snapshot.data,
-          icon: Icon(Icons.arrow_downward),
-          iconSize: 24,
-          elevation: 16,
-          onChanged: (String newValue) async {
-            bloc.inputType.add(newValue);
-          },
-          items: <String>['posts', 'comments', 'albums', 'photos', 'todos', 'users']
-              .map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            );
-          }).toList(),
-        );
+    return DropdownButton<String>(
+      value: _dropdownValue,
+      icon: Icon(Icons.arrow_downward),
+      iconSize: 24,
+      elevation: 16,
+      onChanged: (String newValue) async {
+        setState(() {
+          _dropdownValue = newValue;
+        });
       },
+      items: <String>['posts', 'comments', 'albums', 'photos', 'todos', 'users']
+          .map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
     );
   }
 
