@@ -104,6 +104,7 @@ class _State extends State<_Screen> {
                 child: _buildIdField(bloc),
               ),
               Container(
+                padding: EdgeInsets.all(2.0),
                 child: StreamBuilder(
                   initialData: null,
                   stream: bloc.responseApi,
