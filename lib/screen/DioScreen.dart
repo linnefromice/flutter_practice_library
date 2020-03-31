@@ -15,7 +15,12 @@ class DioScreen extends StatelessWidget {
   }
 }
 
-class _Screen extends StatelessWidget {
+class _Screen extends StatefulWidget {
+  @override
+  State createState() => _State();
+}
+
+class _State extends State<_Screen> {
   List<Widget> _buildPostCards(final List<Post> entries) {
     List<Widget> widgets = [];
     entries.forEach((dto) => widgets.add(
