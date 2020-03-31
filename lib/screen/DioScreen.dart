@@ -51,6 +51,19 @@ class _State extends State<_Screen> {
     );
   }
 
+  Widget _buildIdField(final DioBloc bloc) {
+    return TextField(
+      decoration: InputDecoration(labelText: 'input ID'),
+      keyboardType: TextInputType.number,
+      inputFormatters: <TextInputFormatter>[
+        WhitelistingTextInputFormatter.digitsOnly
+      ],
+      onChanged: (String value) async {
+        bloc.inputId.add(value);
+      },
+    );
+  }
+
   List<Widget> _buildPostCards(final List<Post> entries) {
     List<Widget> widgets = [];
     entries.forEach((dto) => widgets.add(
@@ -88,16 +101,7 @@ class _State extends State<_Screen> {
               ),
               Container(
                 padding: EdgeInsets.all(2.0),
-                child: TextField(
-                  decoration: InputDecoration(labelText: 'input ID'),
-                  keyboardType: TextInputType.number,
-                  inputFormatters: <TextInputFormatter>[
-                    WhitelistingTextInputFormatter.digitsOnly
-                  ],
-                  onChanged: (String value) async {
-                    bloc.inputId.add(value);
-                  },
-                ),
+                child: _buildIdField(bloc),
               ),
               Container(
                 child: StreamBuilder(
