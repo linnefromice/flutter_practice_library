@@ -78,7 +78,10 @@ class _State extends State<_Screen> {
                   onPressed: () => bloc.requestApi.add(null),
                 ),
               ),
-              _buildDropButton(bloc),
+              Container(
+                padding: EdgeInsets.all(2.0),
+                child: _buildDropButton(bloc),
+              ),
               Container(
                 padding: EdgeInsets.all(2.0),
                 child: TextField(
