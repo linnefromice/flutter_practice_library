@@ -43,6 +43,14 @@ class _State extends State<_Screen> {
     );
   }
 
+  Widget _buildRequestButton(PracticeOneBloc bloc) {
+    return RaisedButton.icon(
+      icon: Icon(Icons.apps),
+      label: Text('REQUEST'),
+      onPressed: () => bloc.requestApi.add(_dropdownValue),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of<PracticeOneBloc>(context);
@@ -56,11 +64,7 @@ class _State extends State<_Screen> {
           children: <Widget>[
             Text('PracticeBlocAndStatefulWidgetScreen'),
             _buildDropdownButton(context, bloc),
-            RaisedButton.icon(
-              icon: Icon(Icons.apps),
-              label: Text('REQUEST'),
-              onPressed: () => bloc.requestApi.add(_dropdownValue),
-            ),
+            _buildRequestButton(bloc),
             StreamBuilder(
               initialData: 'NO DATA',
               stream: bloc.responseApi,
