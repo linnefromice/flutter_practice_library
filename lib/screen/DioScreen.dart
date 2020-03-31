@@ -21,6 +21,29 @@ class _Screen extends StatefulWidget {
 }
 
 class _State extends State<_Screen> {
+  String _dropdownValue = 'posts';
+
+  Widget _buildDropButton(final DioBloc bloc) {
+    return DropdownButton<String>(
+        value: _dropdownValue,
+        icon: Icon(Icons.arrow_downward),
+        iconSize: 24,
+        elevation: 16,
+        onChanged: (String newValue) async {
+          setState(() {
+            _dropdownValue = newValue;
+          });
+        },
+        items: <String>['posts', 'comments', 'albums', 'photos', 'todos', 'users']
+            .map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList()
+    );
+  }
+
   List<Widget> _buildPostCards(final List<Post> entries) {
     List<Widget> widgets = [];
     entries.forEach((dto) => widgets.add(
@@ -55,6 +78,7 @@ class _State extends State<_Screen> {
                   onPressed: () => bloc.requestApi.add(null),
                 ),
               ),
+              _buildDropButton(bloc),
               Container(
                 padding: EdgeInsets.all(2.0),
                 child: TextField(
