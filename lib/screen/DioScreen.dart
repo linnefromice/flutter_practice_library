@@ -23,6 +23,13 @@ class _Screen extends StatefulWidget {
 class _State extends State<_Screen> {
   String _dropdownValue = 'posts';
 
+  Widget _buildRequestButton(final DioBloc bloc) {
+    return RaisedButton(
+      child: Text('REQUEST'),
+      onPressed: () => bloc.requestApi.add(null),
+    );
+  }
+
   Widget _buildDropButton(final DioBloc bloc) {
     return DropdownButton<String>(
         value: _dropdownValue,
@@ -73,10 +80,7 @@ class _State extends State<_Screen> {
             children: <Widget>[
               Container(
                 padding: EdgeInsets.all(2.0),
-                child: RaisedButton(
-                  child: Text('REQUEST'),
-                  onPressed: () => bloc.requestApi.add(null),
-                ),
+                child: _buildRequestButton(bloc),
               ),
               Container(
                 padding: EdgeInsets.all(2.0),
