@@ -9,9 +9,9 @@ class JsonplaceholderService {
 
   static Future<List<Post>> findPosts() async {
     final Response response = await _dio.get(_url + "/posts");
-    List<Post> posts = [];
-    response.data.forEach((v) => posts.add(Post.fromJson(v)));
-    return posts;
+    List<Post> domains = [];
+    response.data.forEach((v) => domains.add(Post.fromJson(v)));
+    return domains;
   }
 
   static Future<Post> findPostbyId(final int id) async {
@@ -25,9 +25,9 @@ class JsonplaceholderService {
 
   static Future<List<Comment>> findComments() async {
     final Response response = await _dio.get(_url + "/comments");
-    List<Comment> comments = [];
-    response.data.forEach((v) => comments.add(Comment.fromJson(v)));
-    return comments;
+    List<Comment> domains = [];
+    response.data.forEach((v) => domains.add(Comment.fromJson(v)));
+    return domains;
   }
 
   static Future<Comment> findCommentbyId(final int id) async {
@@ -41,9 +41,9 @@ class JsonplaceholderService {
 
   static Future<List<Album>> findAlbums() async {
     final Response response = await _dio.get(_url + "/albums");
-    List<Album> albums = [];
-    response.data.forEach((v) => albums.add(Album.fromJson(v)));
-    return albums;
+    List<Album> domains = [];
+    response.data.forEach((v) => domains.add(Album.fromJson(v)));
+    return domains;
   }
 
   static Future<Album> findAlbumbyId(final int id) async {
