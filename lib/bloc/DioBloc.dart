@@ -7,8 +7,8 @@ class DioBloc {
   String _inputedId;
   String _inputedType;
 
-  final _requestApiController = StreamController<void>();
-  Sink<void> get requestApi => _requestApiController.sink;
+  final _requestApiController = StreamController<String>();
+  Sink<String> get requestApi => _requestApiController.sink;
 
   final _responseApiController = StreamController<List<Post>>();
   Stream<List<Post>> get responseApi => _responseApiController.stream;
@@ -21,8 +21,8 @@ class DioBloc {
   Stream<String> get getType => _inputedTypeController.stream;
 
   DioBloc() {
-    _requestApiController.stream.listen((_) {
-      _request();
+    _requestApiController.stream.listen((val) {
+      _request(val);
     });
     _inputedId = '';
     _inputedIdController.stream.listen((val) {
@@ -35,7 +35,8 @@ class DioBloc {
     });
   }
 
-  _request() async {
+  _request(final String value) async {
+    print(value);
     List<Post> posts = [];
     if (_inputedId == '') {
       posts = await JsonplaceholderService.findPosts();

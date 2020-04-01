@@ -34,7 +34,7 @@ class _State extends State<_Screen> {
   Widget _buildRequestButton(final DioBloc bloc) {
     return RaisedButton(
       child: Text('REQUEST'),
-      onPressed: () => bloc.requestApi.add(null),
+      onPressed: () => bloc.requestApi.add(_dropdownValue),
     );
   }
 
@@ -48,7 +48,6 @@ class _State extends State<_Screen> {
           setState(() {
             _dropdownValue = newValue;
           });
-          print(newValue);
         },
         items: _dropdownValueMap.keys.toList()
             .map<DropdownMenuItem<String>>((String key) {
