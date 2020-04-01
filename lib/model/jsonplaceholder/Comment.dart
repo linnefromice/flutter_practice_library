@@ -4,14 +4,14 @@
 
 import 'dart:convert';
 
-class User {
+class Comment {
   final int postId;
   final int id;
   final String name;
   final String email;
   final String body;
 
-  User({
+  Comment({
     this.postId,
     this.id,
     this.name,
@@ -19,11 +19,11 @@ class User {
     this.body,
   });
 
-  factory User.fromRawJson(String str) => User.fromJson(json.decode(str));
+  factory Comment.fromRawJson(String str) => Comment.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
+  factory Comment.fromJson(Map<String, dynamic> json) => Comment(
     postId: json["postId"],
     id: json["id"],
     name: json["name"],
