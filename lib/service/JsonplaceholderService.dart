@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_practice_library/model/jsonplaceholder/Comment.dart';
 import 'package:flutter_practice_library/model/jsonplaceholder/Post.dart';
 
 class JsonplaceholderService {
@@ -20,4 +21,21 @@ class JsonplaceholderService {
       return Post.fromJson(response.data);
     }
   }
+
+  static Future<List<Comment>> findComments() async {
+    final Response response = await _dio.get(_url + "/comments");
+    List<Comment> comments = [];
+    response.data.forEach((v) => comments.add(Comment.fromJson(v)));
+    return comments;
+  }
+
+  static Future<Comment> findCommentbyId(final int id) async {
+    final Response response = await _dio.get(_url + '/comments/' + id.toString());
+    if (response.data == null) {
+      return null;
+    } else {
+      return Comment.fromJson(response.data);
+    }
+  }
+
 }
