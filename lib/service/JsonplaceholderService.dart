@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_practice_library/model/jsonplaceholder/Album.dart';
 import 'package:flutter_practice_library/model/jsonplaceholder/Comment.dart';
 import 'package:flutter_practice_library/model/jsonplaceholder/Post.dart';
 
@@ -35,6 +36,22 @@ class JsonplaceholderService {
       return null;
     } else {
       return Comment.fromJson(response.data);
+    }
+  }
+
+  static Future<List<Album>> findAlbums() async {
+    final Response response = await _dio.get(_url + "/albums");
+    List<Album> albums = [];
+    response.data.forEach((v) => albums.add(Album.fromJson(v)));
+    return albums;
+  }
+
+  static Future<Album> findAlbumbyId(final int id) async {
+    final Response response = await _dio.get(_url + '/albums/' + id.toString());
+    if (response.data == null) {
+      return null;
+    } else {
+      return Album.fromJson(response.data);
     }
   }
 
