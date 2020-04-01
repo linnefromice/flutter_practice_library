@@ -21,6 +21,14 @@ class _Screen extends StatefulWidget {
 }
 
 class _State extends State<_Screen> {
+  final Map<String, String> _dropdownValueMap = {
+    'posts':'投稿',
+    'comments':'コメント',
+    'albums':'アルバム',
+    'photos':'写真',
+    'todos':'TODO',
+    'users':'ユーザ'
+  };
   String _dropdownValue = 'posts';
 
   Widget _buildRequestButton(final DioBloc bloc) {
@@ -40,12 +48,13 @@ class _State extends State<_Screen> {
           setState(() {
             _dropdownValue = newValue;
           });
+          print(newValue);
         },
-        items: <String>['posts', 'comments', 'albums', 'photos', 'todos', 'users']
-            .map<DropdownMenuItem<String>>((String value) {
+        items: _dropdownValueMap.keys.toList()
+            .map<DropdownMenuItem<String>>((String key) {
         return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
+          value: key,
+          child: Text(_dropdownValueMap[key]),
         );
       }).toList()
     );
