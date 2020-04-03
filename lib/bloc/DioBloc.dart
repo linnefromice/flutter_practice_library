@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter_practice_library/model/jsonplaceholder/Album.dart';
+import 'package:flutter_practice_library/model/jsonplaceholder/Comment.dart';
 import 'package:flutter_practice_library/model/jsonplaceholder/Post.dart';
 import 'package:flutter_practice_library/service/JsonplaceholderService.dart';
 
@@ -27,31 +29,64 @@ class DioBloc {
 
   _request(final String value) async {
     print(value);
-    List<dynamic> datas;
+    print(_inputedId);
+    List<dynamic> datas = [];
     if (value == 'posts') {
-      datas = await JsonplaceholderService.findPosts();
+      if (_inputedId == '') {
+        datas = await JsonplaceholderService.findPosts();
+      } else {
+        int _id;
+        try {
+          _id = int.parse(_inputedId);
+          List<Post> dtos = [await JsonplaceholderService.findPostbyId(_id)];
+          datas = dtos;
+        } catch (exception) {
+          print(exception.toString());
+          datas = await JsonplaceholderService.findPosts();
+        }
+      }
     } else if (value == 'comments') {
-      datas = await JsonplaceholderService.findComments();
+      if (_inputedId == '') {
+        datas = await JsonplaceholderService.findComments();
+      } else {
+        int _id;
+        try {
+          _id = int.parse(_inputedId);
+          List<Comment> dtos = [await JsonplaceholderService.findCommentbyId(_id)];
+          datas = dtos;
+        } catch (exception) {
+          print(exception.toString());
+          datas = await JsonplaceholderService.findComments();
+        }
+      }
     } else if (value == 'albums') {
-      datas = await JsonplaceholderService.findAlbums();
+      if (_inputedId == '') {
+        datas = await JsonplaceholderService.findAlbums();
+      } else {
+        int _id;
+        try {
+          _id = int.parse(_inputedId);
+          List<Album> dtos = [await JsonplaceholderService.findAlbumbyId(_id)];
+          datas = dtos;
+        } catch (exception) {
+          print(exception.toString());
+          datas = await JsonplaceholderService.findAlbums();
+        }
+      }
     } else {
-      datas = await JsonplaceholderService.findPosts();
-    }
-    _responseApiController.sink.add(datas);
-    /*
-    List<Post> posts = [];
-    if (_inputedId == '') {
-      posts = await JsonplaceholderService.findPosts();
-    } else {
-      int _id;
-      try {
-        _id = int.parse(_inputedId);
-        posts.add(await JsonplaceholderService.findPostbyId(_id));
-      } catch (exception) {
-        posts = await JsonplaceholderService.findPosts();
+      if (_inputedId == '') {
+        datas = await JsonplaceholderService.findPosts();
+      } else {
+        int _id;
+        try {
+          _id = int.parse(_inputedId);
+          datas.add(await JsonplaceholderService.findPostbyId(_id));
+        } catch (exception) {
+          datas = await JsonplaceholderService.findPosts();
+        }
       }
     }
-     */
+    _responseApiController.sink.add(datas);
   }
 
   void dispose() {
