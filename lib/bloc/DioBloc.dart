@@ -5,6 +5,7 @@ import 'package:flutter_practice_library/model/jsonplaceholder/Comment.dart';
 import 'package:flutter_practice_library/model/jsonplaceholder/Photo.dart';
 import 'package:flutter_practice_library/model/jsonplaceholder/Post.dart';
 import 'package:flutter_practice_library/model/jsonplaceholder/Todo.dart';
+import 'package:flutter_practice_library/model/jsonplaceholder/User.dart';
 import 'package:flutter_practice_library/service/JsonplaceholderService.dart';
 
 class DioBloc {
@@ -43,6 +44,8 @@ class DioBloc {
       datas = await _requestPhoto();
     } else if (value == 'todos') {
       datas = await _requestTodo();
+    } else if (value == 'users') {
+      datas = await _requestUser();
     }
     _responseApiController.sink.add(datas);
   }
@@ -123,6 +126,22 @@ class DioBloc {
       } catch (exception) {
         print(exception.toString());
         return JsonplaceholderService.findTodos();
+      }
+    }
+  }
+
+  Future<List<User>> _requestUser() async {
+    if (_inputedId == '') {
+      return await JsonplaceholderService.findUsers();
+    } else {
+      int _id;
+      try {
+        _id = int.parse(_inputedId);
+        List<User> dtos = [await JsonplaceholderService.findUserbyId(_id)];
+        return dtos;
+      } catch (exception) {
+        print(exception.toString());
+        return JsonplaceholderService.findUsers();
       }
     }
   }
