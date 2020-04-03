@@ -9,8 +9,8 @@ class DioBloc {
   final _requestApiController = StreamController<String>();
   Sink<String> get requestApi => _requestApiController.sink;
 
-  final _responseApiController = StreamController<List<Post>>();
-  Stream<List<Post>> get responseApi => _responseApiController.stream;
+  final _responseApiController = StreamController<List<dynamic>>();
+  Stream<List<dynamic>> get responseApi => _responseApiController.stream;
 
   final _inputedIdController = StreamController<String>();
   Sink<String> get inputId => _inputedIdController.sink;
@@ -27,6 +27,18 @@ class DioBloc {
 
   _request(final String value) async {
     print(value);
+    List<dynamic> datas;
+    if (value == 'posts') {
+      datas = await JsonplaceholderService.findPosts();
+    } else if (value == 'comments') {
+      datas = await JsonplaceholderService.findComments();
+    } else if (value == 'albums') {
+      datas = await JsonplaceholderService.findAlbums();
+    } else {
+      datas = await JsonplaceholderService.findPosts();
+    }
+    _responseApiController.sink.add(datas);
+    /*
     List<Post> posts = [];
     if (_inputedId == '') {
       posts = await JsonplaceholderService.findPosts();
@@ -39,7 +51,7 @@ class DioBloc {
         posts = await JsonplaceholderService.findPosts();
       }
     }
-    _responseApiController.sink.add(posts);
+     */
   }
 
   void dispose() {

@@ -120,7 +120,15 @@ class _State extends State<_Screen> {
                     if (snapshot.data == null) {
                       return Text('NO DATA');
                     } else {
-                      List<Widget> widgets = _buildPostCards(snapshot.data);
+                      List<Widget> widgets = [];
+                      List<dynamic> dtos = snapshot.data;
+                      if (dtos[0] is Post) {
+                        widgets = _buildPostCards(snapshot.data);
+                      } else {
+                        snapshot.data.forEach((v) {
+                          widgets.add(Text(v.toString()));
+                        });
+                      }
                       return Column(
                         children: widgets,
                       );
