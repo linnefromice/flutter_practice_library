@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_practice_library/model/jsonplaceholder/Album.dart';
 import 'package:flutter_practice_library/model/jsonplaceholder/Comment.dart';
+import 'package:flutter_practice_library/model/jsonplaceholder/Photo.dart';
 import 'package:flutter_practice_library/model/jsonplaceholder/Post.dart';
 import 'package:flutter_practice_library/service/JsonplaceholderService.dart';
 
@@ -37,8 +38,8 @@ class DioBloc {
       datas = await _requestComment();
     } else if (value == 'albums') {
       datas = await _requestAlbum();
-    } else {
-      datas = await _requestPost();
+    } else if (value == 'photos') {
+      datas = await _requestPhoto();
     }
     _responseApiController.sink.add(datas);
   }
@@ -90,18 +91,18 @@ class DioBloc {
       }
     }
   }
-  Future<List<Album>> _requestAlbum() async {
+  Future<List<Photo>> _requestPhoto() async {
     if (_inputedId == '') {
-      return await JsonplaceholderService.findAlbums();
+      return await JsonplaceholderService.findPhotos();
     } else {
       int _id;
       try {
         _id = int.parse(_inputedId);
-        List<Album> dtos = [await JsonplaceholderService.findAlbumbyId(_id)];
+        List<Photo> dtos = [await JsonplaceholderService.findPhotobyId(_id)];
         return dtos;
       } catch (exception) {
         print(exception.toString());
-        return JsonplaceholderService.findAlbums();
+        return JsonplaceholderService.findPhotos();
       }
     }
   }
