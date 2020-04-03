@@ -32,61 +32,64 @@ class DioBloc {
     print(_inputedId);
     List<dynamic> datas = [];
     if (value == 'posts') {
-      if (_inputedId == '') {
-        datas = await JsonplaceholderService.findPosts();
-      } else {
-        int _id;
-        try {
-          _id = int.parse(_inputedId);
-          List<Post> dtos = [await JsonplaceholderService.findPostbyId(_id)];
-          datas = dtos;
-        } catch (exception) {
-          print(exception.toString());
-          datas = await JsonplaceholderService.findPosts();
-        }
-      }
+      datas = await _requestPost();
     } else if (value == 'comments') {
-      if (_inputedId == '') {
-        datas = await JsonplaceholderService.findComments();
-      } else {
-        int _id;
-        try {
-          _id = int.parse(_inputedId);
-          List<Comment> dtos = [await JsonplaceholderService.findCommentbyId(_id)];
-          datas = dtos;
-        } catch (exception) {
-          print(exception.toString());
-          datas = await JsonplaceholderService.findComments();
-        }
-      }
+      datas = await _requestComment();
     } else if (value == 'albums') {
-      if (_inputedId == '') {
-        datas = await JsonplaceholderService.findAlbums();
-      } else {
-        int _id;
-        try {
-          _id = int.parse(_inputedId);
-          List<Album> dtos = [await JsonplaceholderService.findAlbumbyId(_id)];
-          datas = dtos;
-        } catch (exception) {
-          print(exception.toString());
-          datas = await JsonplaceholderService.findAlbums();
-        }
-      }
+      datas = await _requestAlbum();
     } else {
-      if (_inputedId == '') {
-        datas = await JsonplaceholderService.findPosts();
-      } else {
-        int _id;
-        try {
-          _id = int.parse(_inputedId);
-          datas.add(await JsonplaceholderService.findPostbyId(_id));
-        } catch (exception) {
-          datas = await JsonplaceholderService.findPosts();
-        }
-      }
+      datas = await _requestPost();
     }
     _responseApiController.sink.add(datas);
+  }
+
+  Future<List<Post>> _requestPost() async {
+    if (_inputedId == '') {
+      return await JsonplaceholderService.findPosts();
+    } else {
+      int _id;
+      try {
+        _id = int.parse(_inputedId);
+        List<Post> dtos = [await JsonplaceholderService.findPostbyId(_id)];
+        return dtos;
+      } catch (exception) {
+        print(exception.toString());
+        return await JsonplaceholderService.findPosts();
+      }
+    }
+  }
+
+  Future<List<Comment>> _requestComment() async {
+    if (_inputedId == '') {
+      return await JsonplaceholderService.findComments();
+    } else {
+      int _id;
+      try {
+        _id = int.parse(_inputedId);
+        List<Comment> dtos = [await JsonplaceholderService.findCommentbyId(_id)];
+        return dtos;
+      } catch (exception) {
+        print(exception.toString());
+        return await JsonplaceholderService.findComments();
+      }
+    }
+  }
+
+  Future<List<Album>> _requestAlbum() async {
+    if (_inputedId == '') {
+      return await JsonplaceholderService.findAlbums();
+    } else {
+      int _id;
+      try {
+        _id = int.parse(_inputedId);
+        List<Album> dtos = [await JsonplaceholderService.findAlbumbyId(_id)];
+        return dtos;
+      } catch (exception) {
+        print(exception.toString());
+        return JsonplaceholderService.findAlbums();
+      }
+    }
+
   }
 
   void dispose() {
