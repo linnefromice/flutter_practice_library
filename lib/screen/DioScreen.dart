@@ -252,6 +252,8 @@ class _State extends State<_Screen> {
                         widgets = _buildAlbumCards(dtos);
                       } else if (dtos[0] is Photo) {
                         widgets = _buildPhotoCards(dtos);
+                      } else if (dtos[0] is Todo) {
+                        widgets = _buildTodoCards(dtos);
                       } else {
                         dtos.forEach((v) {
                           widgets.add(Text(v.toString()));

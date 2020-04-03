@@ -89,7 +89,21 @@ class DioBloc {
         return JsonplaceholderService.findAlbums();
       }
     }
-
+  }
+  Future<List<Album>> _requestAlbum() async {
+    if (_inputedId == '') {
+      return await JsonplaceholderService.findAlbums();
+    } else {
+      int _id;
+      try {
+        _id = int.parse(_inputedId);
+        List<Album> dtos = [await JsonplaceholderService.findAlbumbyId(_id)];
+        return dtos;
+      } catch (exception) {
+        print(exception.toString());
+        return JsonplaceholderService.findAlbums();
+      }
+    }
   }
 
   void dispose() {
