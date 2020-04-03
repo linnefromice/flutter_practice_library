@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_practice_library/bloc/DioBloc.dart';
+import 'package:flutter_practice_library/model/jsonplaceholder/Album.dart';
+import 'package:flutter_practice_library/model/jsonplaceholder/Comment.dart';
 import 'package:flutter_practice_library/model/jsonplaceholder/Post.dart';
 import 'package:provider/provider.dart';
 
@@ -74,6 +76,15 @@ class _State extends State<_Screen> {
 
   List<Widget> _buildPostCards(final List<Post> entries) {
     List<Widget> widgets = [];
+    widgets.add(
+      Text(
+        'Post',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontStyle: FontStyle.italic,
+        ),
+      )
+    );
     entries.forEach((dto) => widgets.add(
       Card(
         child: ListTile(
@@ -86,6 +97,59 @@ class _State extends State<_Screen> {
     ));
     return widgets;
   }
+
+  List<Widget> _buildCommentCards(final List<Comment> entries) {
+    List<Widget> widgets = [];
+    widgets.add(
+      Text(
+        'Comment',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontStyle: FontStyle.italic,
+        ),
+      )
+    );
+    entries.forEach((dto) => widgets.add(
+      Card(
+        child: ListTile(
+          leading: Text(dto.id.toString()),
+          title: Text(dto.name),
+          subtitle: Column(
+            children: <Widget>[
+              Text(dto.body),
+              Text(dto.email)
+            ],
+          ),
+          trailing: Text(dto.postId.toString()),
+        ),
+      )
+    ));
+    return widgets;
+  }
+
+  List<Widget> _buildAlbumCards(final List<Album> entries) {
+    List<Widget> widgets = [];
+    widgets.add(
+      Text(
+        'Album',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontStyle: FontStyle.italic,
+        ),
+      )
+    );
+    entries.forEach((dto) => widgets.add(
+      Card(
+        child: ListTile(
+          leading: Text(dto.id.toString()),
+          title: Text(dto.title),
+          trailing: Text(dto.userId.toString()),
+        ),
+      )
+    ));
+    return widgets;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -123,9 +187,13 @@ class _State extends State<_Screen> {
                       List<Widget> widgets = [];
                       List<dynamic> dtos = snapshot.data;
                       if (dtos[0] is Post) {
-                        widgets = _buildPostCards(snapshot.data);
+                        widgets = _buildPostCards(dtos);
+                      } else if (dtos[0] is Comment) {
+                        widgets = _buildCommentCards(dtos);
+                      } else if (dtos[0] is Album) {
+                        widgets = _buildAlbumCards(dtos);
                       } else {
-                        snapshot.data.forEach((v) {
+                        dtos.forEach((v) {
                           widgets.add(Text(v.toString()));
                         });
                       }
