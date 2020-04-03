@@ -1,7 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_practice_library/model/jsonplaceholder/Album.dart';
 import 'package:flutter_practice_library/model/jsonplaceholder/Comment.dart';
+import 'package:flutter_practice_library/model/jsonplaceholder/Photo.dart';
 import 'package:flutter_practice_library/model/jsonplaceholder/Post.dart';
+import 'package:flutter_practice_library/model/jsonplaceholder/Todo.dart';
+import 'package:flutter_practice_library/model/jsonplaceholder/User.dart';
 
 class JsonplaceholderService {
   static final _dio = Dio();
@@ -55,4 +58,51 @@ class JsonplaceholderService {
     }
   }
 
+  static Future<List<Photo>> findPhotos() async {
+    final Response response = await _dio.get(_url + "/photos");
+    List<Photo> domains = [];
+    response.data.forEach((v) => domains.add(Photo.fromJson(v)));
+    return domains;
+  }
+
+  static Future<Photo> findPhotobyId(final int id) async {
+    final Response response = await _dio.get(_url + '/photos/' + id.toString());
+    if (response.data == null) {
+      return null;
+    } else {
+      return Photo.fromJson(response.data);
+    }
+  }
+
+  static Future<List<Todo>> findTodos() async {
+    final Response response = await _dio.get(_url + "/todos");
+    List<Todo> domains = [];
+    response.data.forEach((v) => domains.add(Todo.fromJson(v)));
+    return domains;
+  }
+
+  static Future<Todo> findTodobyId(final int id) async {
+    final Response response = await _dio.get(_url + '/todos/' + id.toString());
+    if (response.data == null) {
+      return null;
+    } else {
+      return Todo.fromJson(response.data);
+    }
+  }
+
+  static Future<List<User>> findUsers() async {
+    final Response response = await _dio.get(_url + "/users");
+    List<User> domains = [];
+    response.data.forEach((v) => domains.add(User.fromJson(v)));
+    return domains;
+  }
+
+  static Future<User> findUserbyId(final int id) async {
+    final Response response = await _dio.get(_url + '/users/' + id.toString());
+    if (response.data == null) {
+      return null;
+    } else {
+      return User.fromJson(response.data);
+    }
+  }
 }
