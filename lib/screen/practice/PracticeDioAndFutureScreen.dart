@@ -31,7 +31,7 @@ class _State extends State<_Screen> {
     'users':'ユーザ'
   };
   String _dropdownValue;
-  String _inputId = '';
+  final _inputIdController = TextEditingController();
 
   @override
   void initState() {
@@ -41,16 +41,12 @@ class _State extends State<_Screen> {
 
   Widget _buildIdField() {
     return TextField(
+      controller: _inputIdController,
       decoration: InputDecoration(labelText: 'input ID'),
       keyboardType: TextInputType.number,
       inputFormatters: <TextInputFormatter>[
         WhitelistingTextInputFormatter.digitsOnly
       ],
-      onChanged: (String value) async {
-        setState(() {
-          _inputId = value;
-        });
-      },
     );
   }
 
@@ -79,7 +75,7 @@ class _State extends State<_Screen> {
     return RaisedButton(
       child: Text('REQUEST'),
       onPressed: () async {
-        User dto = await JsonplaceholderService.findUserbyId(int.parse(_inputId));
+        User dto = await JsonplaceholderService.findUserbyId(int.parse(_inputIdController.text));
         print(dto.toRawJson());
       },
     );
