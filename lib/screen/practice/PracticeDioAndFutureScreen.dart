@@ -39,6 +39,12 @@ class _State extends State<_Screen> {
     _dropdownValue = 'posts';
   }
 
+  @override
+  void dispose() {
+    _inputIdController.dispose();
+    super.dispose();
+  }
+
   Widget _buildIdField() {
     return TextField(
       controller: _inputIdController,
