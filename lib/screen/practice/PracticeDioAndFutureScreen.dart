@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_practice_library/bloc/DioBloc.dart';
 import 'package:provider/provider.dart';
 
@@ -19,6 +20,53 @@ class _Screen extends StatefulWidget {
 }
 
 class _State extends State<_Screen> {
+  final Map<String, String> _dropdownValueMap = {
+    'posts':'投稿',
+    'comments':'コメント',
+    'albums':'アルバム',
+    'photos':'写真',
+    'todos':'TODO',
+    'users':'ユーザ'
+  };
+  String _dropdownValue = 'posts';
+  String _inputId = '';
+
+  Widget _buildIdField() {
+    return TextField(
+      decoration: InputDecoration(labelText: 'input ID'),
+      keyboardType: TextInputType.number,
+      inputFormatters: <TextInputFormatter>[
+        WhitelistingTextInputFormatter.digitsOnly
+      ],
+      onChanged: (String value) async {
+        setState(() {
+          _inputId = value;
+        });
+      },
+    );
+  }
+
+  Widget _buildDropButton() {
+    return DropdownButton<String>(
+        value: _dropdownValue,
+        icon: Icon(Icons.arrow_downward),
+        iconSize: 24,
+        elevation: 16,
+        onChanged: (String value) async {
+          setState(() {
+            _dropdownValue = value;
+          });
+        },
+        items: _dropdownValueMap.keys.toList()
+            .map<DropdownMenuItem<String>>((String key) {
+          return DropdownMenuItem<String>(
+            value: key,
+            child: Text(_dropdownValueMap[key]),
+          );
+        }).toList()
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +74,14 @@ class _State extends State<_Screen> {
         title: Text('Practice - dio and FutureBuilder'),
       ),
       body: Center(
-        child: Text('Practice - dio and FutureBuilder'),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              _buildIdField(),
+              _buildDropButton(),
+            ],
+          ),
+        ),
       ),
     );
   }
