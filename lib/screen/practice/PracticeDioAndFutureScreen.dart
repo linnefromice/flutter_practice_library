@@ -30,8 +30,14 @@ class _State extends State<_Screen> {
     'todos':'TODO',
     'users':'ユーザ'
   };
-  String _dropdownValue = 'posts';
+  String _dropdownValue;
   String _inputId = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _dropdownValue = 'posts';
+  }
 
   Widget _buildIdField() {
     return TextField(
@@ -100,7 +106,7 @@ class _State extends State<_Screen> {
               Container(
                 padding: EdgeInsets.all(2.0),
                 child: _buildRequestButton(),
-              )
+              ),
             ],
           ),
         ),
