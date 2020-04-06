@@ -73,8 +73,8 @@ class _State extends State<_Screen> {
     return RaisedButton(
       child: Text('REQUEST'),
       onPressed: () async {
-        List<User> dtos = await JsonplaceholderService.findUsers();
-        print(dtos);
+        User dto = await JsonplaceholderService.findUserbyId(int.parse(_inputId));
+        print(dto.toRawJson());
       },
     );
   }
@@ -97,6 +97,10 @@ class _State extends State<_Screen> {
                 padding: EdgeInsets.all(2.0),
                 child: _buildDropButton(),
               ),
+              Container(
+                padding: EdgeInsets.all(2.0),
+                child: _buildRequestButton(),
+              )
             ],
           ),
         ),
