@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_practice_library/bloc/DioBloc.dart';
+import 'package:flutter_practice_library/model/jsonplaceholder/User.dart';
+import 'package:flutter_practice_library/service/JsonplaceholderService.dart';
 import 'package:provider/provider.dart';
 
 class PracticeDioAndFutureScreen extends StatelessWidget {
@@ -64,6 +66,16 @@ class _State extends State<_Screen> {
             child: Text(_dropdownValueMap[key]),
           );
         }).toList()
+    );
+  }
+
+  Widget _buildRequestButton() {
+    return RaisedButton(
+      child: Text('REQUEST'),
+      onPressed: () async {
+        List<User> dtos = await JsonplaceholderService.findUsers();
+        print(dtos);
+      },
     );
   }
 
