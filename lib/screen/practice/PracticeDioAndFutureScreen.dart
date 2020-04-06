@@ -77,8 +77,14 @@ class _State extends State<_Screen> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              _buildIdField(),
-              _buildDropButton(),
+              Container(
+                padding: EdgeInsets.all(2.0),
+                child: _buildIdField(),
+              ),
+              Container(
+                padding: EdgeInsets.all(2.0),
+                child: _buildDropButton(),
+              ),
             ],
           ),
         ),
