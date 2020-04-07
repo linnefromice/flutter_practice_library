@@ -31,6 +31,7 @@ class _State extends State<_Screen> {
     'users':'ユーザ'
   };
   String _dropdownValue;
+  User _user;
   final _inputIdController = TextEditingController();
 
   @override
@@ -83,12 +84,18 @@ class _State extends State<_Screen> {
       onPressed: () async {
         User dto = await JsonplaceholderService.findUserbyId(int.parse(_inputIdController.text));
         print(dto.toRawJson());
+        setState(() {
+          _user = dto;
+        });
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    Widget userProfileWidget = (_user != null)
+        ? Text(_user.toRawJson()) : Text('NO DATA');
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Practice - dio and FutureBuilder'),
@@ -109,6 +116,10 @@ class _State extends State<_Screen> {
                 padding: EdgeInsets.all(2.0),
                 child: _buildRequestButton(),
               ),
+              Container(
+                padding: EdgeInsets.all(2.0),
+                child: userProfileWidget,
+              )
             ],
           ),
         ),
