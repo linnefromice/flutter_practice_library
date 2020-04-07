@@ -57,6 +57,53 @@ class _State extends State<_Screen> {
     super.dispose();
   }
 
+  void _request(final String selectedDropdownValue) async {
+    if (_inputIdController.text == '') {
+      return;
+    }
+    switch(selectedDropdownValue) {
+      case 'posts': {
+        setState(() {
+          _requestedDropdownValue = _dropdownValue;
+        });
+      }
+      break;
+
+      case 'comments': {
+        setState(() {
+          _requestedDropdownValue = _dropdownValue;
+        });
+      }
+      break;
+
+      case 'albums': {
+        setState(() {
+          _requestedDropdownValue = _dropdownValue;
+        });
+      }
+      break;
+
+      case 'photos': {
+        setState(() {
+          _requestedDropdownValue = _dropdownValue;
+        });
+      }
+      break;
+
+      case 'todos': {
+        setState(() {
+          _requestedDropdownValue = _dropdownValue;
+        });
+      }
+      break;
+
+      case 'users': {
+        _requestUser();
+      }
+      break;
+    }
+  }
+
   void _requestUser() async {
     if (_inputIdController.text == '') {
       return;
