@@ -99,7 +99,36 @@ class _State extends State<_Screen> {
     if (_user == null) {
       return Text('NO DATA');
     }
-    return Text(_user.toRawJson());
+    return Column(
+      children: <Widget>[
+        ListTile(
+          leading: Icon(Icons.person),
+          title: Text(_user.name),
+        ),
+        ListTile(
+          leading: Icon(Icons.email),
+          title: Text(_user.email),
+        ),
+        ListTile(
+          leading: Icon(Icons.home),
+          title: Text('${_user.address.city} / ${_user.address.suite} / ${_user.address.street}'),
+          subtitle: Text('${_user.address.zipcode}'),
+        ),
+        ListTile(
+          leading: Icon(Icons.phone),
+          title: Text(_user.phone),
+        ),
+        ListTile(
+          leading: Icon(Icons.web),
+          title: Text(_user.website),
+        ),
+        ListTile(
+          leading: Icon(Icons.work),
+          title: Text(_user.company.name),
+          subtitle: Text(_user.company.bs),
+        ),
+      ],
+    );
   }
 
   @override
