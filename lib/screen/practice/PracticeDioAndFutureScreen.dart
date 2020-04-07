@@ -95,10 +95,15 @@ class _State extends State<_Screen> {
     );
   }
 
+  Widget _buildDisplayResponseWidget() {
+    if (_user == null) {
+      return Text('NO DATA');
+    }
+    return Text(_user.toRawJson());
+  }
+
   @override
   Widget build(BuildContext context) {
-    Widget displayResponseWidget = (_user != null)
-        ? Text(_user.toRawJson()) : Text('NO DATA');
 
     return Scaffold(
       appBar: AppBar(
@@ -118,7 +123,7 @@ class _State extends State<_Screen> {
               ),
               Container(
                 padding: EdgeInsets.all(2.0),
-                child: displayResponseWidget,
+                child: _buildDisplayResponseWidget(),
               )
             ],
           ),
