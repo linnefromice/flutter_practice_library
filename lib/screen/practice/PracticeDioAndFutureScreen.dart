@@ -195,7 +195,7 @@ class _State extends State<_Screen> {
   Widget _buildRequestButton() {
     return RaisedButton(
       child: Text('REQUEST'),
-      onPressed: _requestUser
+      onPressed: () => _request(_dropdownValue)
     );
   }
 
