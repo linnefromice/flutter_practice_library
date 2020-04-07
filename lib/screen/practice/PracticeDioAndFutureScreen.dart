@@ -31,6 +31,7 @@ class _State extends State<_Screen> {
     'users':'ユーザ'
   };
   String _dropdownValue;
+  String _requestedDropdownValue;
   User _user;
   final _inputIdController = TextEditingController();
 
@@ -53,6 +54,7 @@ class _State extends State<_Screen> {
     User dto = await JsonplaceholderService.findUserbyId(int.parse(_inputIdController.text));
     setState(() {
       _user = dto;
+      _requestedDropdownValue = _dropdownValue;
     });
   }
 
@@ -131,6 +133,67 @@ class _State extends State<_Screen> {
     );
   }
 
+  Widget _buildResponseDataWidget(final String requestedValue) {
+    Widget widget;
+    switch(requestedValue) {
+      case 'posts': {
+        widget = Column(
+          children: <Widget>[
+            Text('POSTS'),
+          ],
+        );
+      }
+      break;
+
+      case 'comments': {
+        widget = Column(
+          children: <Widget>[
+            Text('COMMENTS'),
+          ],
+        );
+      }
+      break;
+
+      case 'albums': {
+        widget = Column(
+          children: <Widget>[
+            Text('ALBUMS'),
+          ],
+        );
+      }
+      break;
+
+      case 'photos': {
+        widget = Column(
+          children: <Widget>[
+            Text('PHOTOS'),
+          ],
+        );
+      }
+      break;
+
+      case 'todos': {
+        widget = Column(
+          children: <Widget>[
+            Text('TODOS'),
+          ],
+        );
+      }
+      break;
+
+      case 'users': {
+        widget = _buildDisplayResponseWidget(_user);
+      }
+      break;
+
+      default: {
+        widget = Text('NODATA');
+      }
+      break;
+    }
+    return widget;
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -148,11 +211,15 @@ class _State extends State<_Screen> {
               ),
               Container(
                 padding: EdgeInsets.all(2.0),
+                child: _buildDropButton(),
+              ),
+              Container(
+                padding: EdgeInsets.all(2.0),
                 child: _buildRequestButton(),
               ),
               Container(
                 padding: EdgeInsets.all(2.0),
-                child: _buildDisplayResponseWidget(_user),
+                child: _buildResponseDataWidget(_requestedDropdownValue),
               )
             ],
           ),
