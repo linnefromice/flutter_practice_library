@@ -95,37 +95,37 @@ class _State extends State<_Screen> {
     );
   }
 
-  Widget _buildDisplayResponseWidget() {
-    if (_user == null) {
+  Widget _buildDisplayResponseWidget(final User dto) {
+    if (dto == null) {
       return Text('NO DATA');
     }
     return Column(
       children: <Widget>[
         ListTile(
           leading: Icon(Icons.person),
-          title: Text(_user.name),
+          title: Text(dto.name),
         ),
         ListTile(
           leading: Icon(Icons.email),
-          title: Text(_user.email),
+          title: Text(dto.email),
         ),
         ListTile(
           leading: Icon(Icons.home),
-          title: Text('${_user.address.city} / ${_user.address.suite} / ${_user.address.street}'),
-          subtitle: Text('${_user.address.zipcode}'),
+          title: Text('${dto.address.city} / ${dto.address.suite} / ${dto.address.street}'),
+          subtitle: Text('${dto.address.zipcode}'),
         ),
         ListTile(
           leading: Icon(Icons.phone),
-          title: Text(_user.phone),
+          title: Text(dto.phone),
         ),
         ListTile(
           leading: Icon(Icons.web),
-          title: Text(_user.website),
+          title: Text(dto.website),
         ),
         ListTile(
           leading: Icon(Icons.work),
-          title: Text(_user.company.name),
-          subtitle: Text(_user.company.bs),
+          title: Text(dto.company.name),
+          subtitle: Text(dto.company.bs),
         ),
       ],
     );
@@ -152,7 +152,7 @@ class _State extends State<_Screen> {
               ),
               Container(
                 padding: EdgeInsets.all(2.0),
-                child: _buildDisplayResponseWidget(),
+                child: _buildDisplayResponseWidget(_user),
               )
             ],
           ),
