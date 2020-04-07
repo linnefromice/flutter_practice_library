@@ -94,11 +94,60 @@ class _State extends State<_Screen> {
     }
   }
 
-  void _requestPost() async {}
-  void _requestComment() async {}
-  void _requestAlbum() async {}
-  void _requestPhoto() async {}
-  void _requestTodo() async {}
+  void _requestPost() async {
+    if (_inputIdController.text == '') {
+      return;
+    }
+    Post dto = await JsonplaceholderService.findPostbyId(int.parse(_inputIdController.text));
+    setState(() {
+      _post = dto;
+      _requestedDropdownValue = _dropdownValue;
+    });
+  }
+
+  void _requestComment() async {
+    if (_inputIdController.text == '') {
+      return;
+    }
+    Comment dto = await JsonplaceholderService.findCommentbyId(int.parse(_inputIdController.text));
+    setState(() {
+      _comment = dto;
+      _requestedDropdownValue = _dropdownValue;
+    });
+  }
+
+  void _requestAlbum() async {
+    if (_inputIdController.text == '') {
+      return;
+    }
+    Album dto = await JsonplaceholderService.findAlbumbyId(int.parse(_inputIdController.text));
+    setState(() {
+      _album = dto;
+      _requestedDropdownValue = _dropdownValue;
+    });
+  }
+
+  void _requestPhoto() async {
+    if (_inputIdController.text == '') {
+      return;
+    }
+    Photo dto = await JsonplaceholderService.findPhotobyId(int.parse(_inputIdController.text));
+    setState(() {
+      _photo = dto;
+      _requestedDropdownValue = _dropdownValue;
+    });
+  }
+
+  void _requestTodo() async {
+    if (_inputIdController.text == '') {
+      return;
+    }
+    Todo dto = await JsonplaceholderService.findTodobyId(int.parse(_inputIdController.text));
+    setState(() {
+      _todo = dto;
+      _requestedDropdownValue = _dropdownValue;
+    });
+  }
 
   void _requestUser() async {
     if (_inputIdController.text == '') {
