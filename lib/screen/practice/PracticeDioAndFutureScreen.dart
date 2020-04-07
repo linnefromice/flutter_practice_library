@@ -63,37 +63,27 @@ class _State extends State<_Screen> {
     }
     switch(selectedDropdownValue) {
       case 'posts': {
-        setState(() {
-          _requestedDropdownValue = _dropdownValue;
-        });
+        _requestPost();
       }
       break;
 
       case 'comments': {
-        setState(() {
-          _requestedDropdownValue = _dropdownValue;
-        });
+        _requestComment();
       }
       break;
 
       case 'albums': {
-        setState(() {
-          _requestedDropdownValue = _dropdownValue;
-        });
+        _requestAlbum();
       }
       break;
 
       case 'photos': {
-        setState(() {
-          _requestedDropdownValue = _dropdownValue;
-        });
+        _requestPhoto();
       }
       break;
 
       case 'todos': {
-        setState(() {
-          _requestedDropdownValue = _dropdownValue;
-        });
+        _requestTodo();
       }
       break;
 
