@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_practice_library/bloc/DioBloc.dart';
+import 'package:flutter_practice_library/model/jsonplaceholder/Album.dart';
+import 'package:flutter_practice_library/model/jsonplaceholder/Comment.dart';
+import 'package:flutter_practice_library/model/jsonplaceholder/Photo.dart';
+import 'package:flutter_practice_library/model/jsonplaceholder/Post.dart';
+import 'package:flutter_practice_library/model/jsonplaceholder/Todo.dart';
 import 'package:flutter_practice_library/model/jsonplaceholder/User.dart';
 import 'package:flutter_practice_library/service/JsonplaceholderService.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +37,11 @@ class _State extends State<_Screen> {
   };
   String _dropdownValue;
   String _requestedDropdownValue;
+  Post _post;
+  Comment _comment;
+  Album _album;
+  Photo _photo;
+  Todo _todo;
   User _user;
   final _inputIdController = TextEditingController();
 
