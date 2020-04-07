@@ -82,8 +82,10 @@ class _State extends State<_Screen> {
     return RaisedButton(
       child: Text('REQUEST'),
       onPressed: () async {
+        if (_inputIdController.text == '') {
+          return;
+        }
         User dto = await JsonplaceholderService.findUserbyId(int.parse(_inputIdController.text));
-        print(dto.toRawJson());
         setState(() {
           _user = dto;
         });
