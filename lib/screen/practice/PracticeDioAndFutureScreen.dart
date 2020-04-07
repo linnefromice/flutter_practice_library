@@ -104,6 +104,12 @@ class _State extends State<_Screen> {
     }
   }
 
+  void _requestPost() async {}
+  void _requestComment() async {}
+  void _requestAlbum() async {}
+  void _requestPhoto() async {}
+  void _requestTodo() async {}
+
   void _requestUser() async {
     if (_inputIdController.text == '') {
       return;
