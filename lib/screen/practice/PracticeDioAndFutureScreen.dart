@@ -239,47 +239,72 @@ class _State extends State<_Screen> {
     Widget widget;
     switch(requestedValue) {
       case 'posts': {
-        widget = Column(
-          children: <Widget>[
-            Text('POSTS'),
-          ],
-        );
+        if (_post == null) {
+          widget = Text('NODATA');
+        } else {
+          widget = Column(
+            children: <Widget>[
+              Text('POSTS'),
+              Text(_post.toRawJson())
+            ],
+          );
+        }
       }
       break;
 
       case 'comments': {
-        widget = Column(
-          children: <Widget>[
-            Text('COMMENTS'),
-          ],
-        );
+        if (_comment == null) {
+          widget = Text('NODATA');
+        } else {
+          widget = Column(
+            children: <Widget>[
+              Text('COMMENTS'),
+              Text(_comment.toRawJson())
+            ],
+          );
+        }
       }
       break;
 
       case 'albums': {
-        widget = Column(
-          children: <Widget>[
-            Text('ALBUMS'),
-          ],
-        );
+        if (_album == null) {
+          widget = Text('NODATA');
+        } else {
+          widget = Column(
+            children: <Widget>[
+              Text('ALBUMS'),
+              Text(_album.toRawJson())
+            ],
+          );
+        }
       }
       break;
 
       case 'photos': {
-        widget = Column(
-          children: <Widget>[
-            Text('PHOTOS'),
-          ],
-        );
+        if (_photo == null) {
+          widget = Text('NODATA');
+        } else {
+          widget = Column(
+            children: <Widget>[
+              Text('PHOTOS'),
+              Text(_photo.toRawJson())
+            ],
+          );
+        }
       }
       break;
 
       case 'todos': {
-        widget = Column(
-          children: <Widget>[
-            Text('TODOS'),
-          ],
-        );
+        if (_todo == null) {
+          widget = Text('NODATA');
+        } else {
+          widget = Column(
+            children: <Widget>[
+              Text('TODOS'),
+              Text(_todo.toRawJson())
+            ],
+          );
+        }
       }
       break;
 
