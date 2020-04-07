@@ -46,6 +46,16 @@ class _State extends State<_Screen> {
     super.dispose();
   }
 
+  void _requestUser() async {
+    if (_inputIdController.text == '') {
+      return;
+    }
+    User dto = await JsonplaceholderService.findUserbyId(int.parse(_inputIdController.text));
+    setState(() {
+      _user = dto;
+    });
+  }
+
   Widget _buildIdField() {
     return TextField(
       controller: _inputIdController,
@@ -81,21 +91,13 @@ class _State extends State<_Screen> {
   Widget _buildRequestButton() {
     return RaisedButton(
       child: Text('REQUEST'),
-      onPressed: () async {
-        if (_inputIdController.text == '') {
-          return;
-        }
-        User dto = await JsonplaceholderService.findUserbyId(int.parse(_inputIdController.text));
-        setState(() {
-          _user = dto;
-        });
-      },
+      onPressed: _requestUser
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    Widget userProfileWidget = (_user != null)
+    Widget displayResponseWidget = (_user != null)
         ? Text(_user.toRawJson()) : Text('NO DATA');
 
     return Scaffold(
@@ -112,15 +114,11 @@ class _State extends State<_Screen> {
               ),
               Container(
                 padding: EdgeInsets.all(2.0),
-                child: _buildDropButton(),
-              ),
-              Container(
-                padding: EdgeInsets.all(2.0),
                 child: _buildRequestButton(),
               ),
               Container(
                 padding: EdgeInsets.all(2.0),
-                child: userProfileWidget,
+                child: displayResponseWidget,
               )
             ],
           ),
